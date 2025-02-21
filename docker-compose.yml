@@ -1,0 +1,41 @@
+services:
+  redmine:
+    image: redmine
+    restart: unless-stopped
+    ports:
+      - '${PORT:-3000}:3000'
+    environment:
+      REDMINE_DB_MYSQL: db
+      REDMINE_DB_PASSWORD: example
+      REDMINE_SECRET_KEY_BASE: supersecretkey
+      TZ: Europe/Moscow
+    volumes:
+      - ./conf.d/database.yml:/usr/src/redmine/config/database.yml
+      - ./themes:/usr/src/redmine/themes
+      - ./plugins:/usr/src/redmine/plugins
+      - ./redmine_files:/usr/src/redmine/files
+    env_file:
+      - .env
+    depends_on:
+      db:
+        condition: service_healthy
+    
+  db:
+    image: postgres:16
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${DB_USERNAME:-redmine}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-redmine}
+      POSTGRES_DB: ${DB_DATABASE:-redmine}
+      POSTGRES_INITDB_ARGS: "--encoding=UTF8 --data-checksums"
+      TZ: Europe/Moscow
+    volumes:
+      - ${DB_DATA_LOCATION:-./postgres_data}:/var/lib/postgresql/data
+    env_file:
+      - .env
+    healthcheck:
+      test:
+        ['CMD', 'pg_isready', '-U', "${DB_USERNAME:-redmine}", '-d', "${DB_DATABASE:-redmine}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
