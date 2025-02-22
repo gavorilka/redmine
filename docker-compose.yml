@@ -1,16 +1,20 @@
 services:
   redmine:
     image: redmine
-    restart: unless-stopped
+    container_name: redmine
+    restart: always
     ports:
-      - '${PORT:-3000}:3000'
+      - '${REDMINE_PORT:-3000}:3000'
     environment:
-      REDMINE_DB_MYSQL: db
-      REDMINE_DB_PASSWORD: example
-      REDMINE_SECRET_KEY_BASE: supersecretkey
+      REDMINE_DB_POSTGRES: db
+      REDMINE_DB_USERNAME: ${DB_USERNAME:-redmine}
+      REDMINE_DB_PASSWORD: ${DB_PASSWORD:-redmine}
+      REDMINE_DB_DATABASE: ${DB_DATABASE:-redmine}
+      SECRET_KEY_BASE: ${REDMINE_SECRET}
       TZ: Europe/Moscow
     volumes:
-      - ./conf.d/database.yml:/usr/src/redmine/config/database.yml
+      - ./conf/configuration.yml:/usr/src/redmine/config/configuration.yml
+      - ./conf/database.yml:/usr/src/redmine/config/database.yml
       - ./themes:/usr/src/redmine/themes
       - ./plugins:/usr/src/redmine/plugins
       - ./redmine_files:/usr/src/redmine/files
@@ -21,7 +25,8 @@ services:
         condition: service_healthy
     
   db:
-    image: postgres:16
+    image: postgres
+    container_name: redmine-db
     restart: unless-stopped
     environment:
       POSTGRES_USER: ${DB_USERNAME:-redmine}

@@ -1,0 +1,10 @@
+production:
+  delivery_method: :smtp
+  smtp_settings:
+    enable_starttls_auto: true
+    address: <%= ENV['SMTP_ADDRESS'] || "smtp.gmail.com" %> 
+    port: <%= ENV['SMTP_PORT'] || 587 %>
+    domain: <%= ENV['MAIL_DOMAIN'] || "smtp.gmail.com" %> 
+    authentication: :plain
+    user_name: <%= ENV['SMTP_USER'] || "your_email@gmail.com" %>  
+    password: <%= ENV['SMTP_PASSWORD'] || "your_password" %> 
