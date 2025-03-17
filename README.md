@@ -5,6 +5,9 @@
 В redmine установлены плагины:
 - https://github.com/jgraichen/redmine_dashboard - канбан доска.
 
+Можно кстати накатить плагин который сам редмайн превращает в систему заявок 
+https://github.com/jfqd/redmine_helpdesk?tab=readme-ov-file
+
 Установленные темы см. в  первом комите затем удалил:
 - https://www.redmineup.com/pages/themes/circle
 - https://www.redmineup.com/pages/themes/a1
