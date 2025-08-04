@@ -1,0 +1,500 @@
+.controller-projects.action-index .edit-issue {
+    cursor: pointer;
+    position: absolute;
+    margin-left: 2px !important;
+}
+.controller-projects.action-index.safari .edit-issue {
+    position: static;
+}
+.controller-projects.action-index.safari .root .project .edit-issue svg{
+    margin-bottom: 3px;
+}
+.controller-projects.action-index textarea.resizable {
+    width: 600px;
+    height: 50px;
+    max-width: 700px;
+    max-height: 100px;  
+}
+
+.controller-projects.action-index td.short_description {
+    min-width: 600px;
+    max-width: 600px;
+    text-align: left !important;
+}
+
+.controller-projects.action-index td {
+    position: relative !important;
+    padding-right: 20px !important;
+}
+
+.controller-projects.action-index table.list td {
+    text-align: center;
+}
+
+.controller-projects.action-index .link {
+    padding: 0rem 1.5rem !important;
+}
+
+.controller-projects.action-index .project span.div_text {
+    display: inline-block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 75%;
+}
+
+.controller-projects.action-index .string span.div_text {
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    max-width: 30%;
+}
+
+
+.controller-projects.action-index .link span.div_text {
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    max-width: 30%;
+}
+
+.controller-projects.action-index .float span.div_text {
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    max-width: 30%;
+}
+
+.controller-projects.action-index .int span.div_text {
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    max-width: 30%;
+}
+
+.controller-projects.action-index .list span.div_text {
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    max-width: 30%;
+}
+
+.controller-projects.action-index .user span.div_text {
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    max-width: 30%;
+}
+
+.controller-projects.action-index .version span.div_text {
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    max-width: 30%;
+}
+
+.controller-projects.action-index .bool span.div_text {
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    max-width: 30%;
+}
+
+.controller-projects.action-index .text span.div_text,.controller-projects.action-index .attachment span.div_text,.controller-projects.action-index .enumeration span.div_text {
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    max-width: 30%;
+}
+
+
+.controller-projects.action-index td > input.update_project_name , .controller-projects.action-index td > input.update_project_homepage{
+    width: 250px;
+}
+
+.controller-projects.action-index .projects th, .controller-projects.action-index .projects td {
+    min-width: 180px;
+}
+
+ .controller-projects.action-index .projects td.homepage + td input ,.controller-projects.action-index .projects td.string + td input
+ ,.controller-projects.action-index .projects td.text + td input ,.controller-projects.action-index .projects td.link + td input{
+    width: 250px;
+}
+
+.controller-projects.action-index .projects td.parent_id + td select, .controller-projects.action-index .projects td.version + td select, .controller-projects.action-index .projects td.user + td select, .controller-projects.action-index .projects td.bool + td select, .controller-projects.action-index .projects td.list + td select, .controller-projects.action-index .projects td.fixed_version + td select {
+    width: 180px;
+}
+
+.controller-projects.action-index .projects td.name , .controller-projects.action-index .projects td.homepage,.controller-projects.action-index .projects td.parent_id  ,.controller-projects.action-index .projects td.string 
+,.controller-projects.action-index .projects td.text ,.controller-projects.action-index .projects td.link {
+    min-width: 250px;
+}
+
+.controller-projects.action-index .projects td.name , .controller-projects.action-index .projects td.homepage  ,.controller-projects.action-index .projects td.string 
+,.controller-projects.action-index .projects td.text ,.controller-projects.action-index .projects td.link {
+    min-width: 250px;
+}
+
+
+div.custom-details > div:not(.issues-info):not(.project-members) {
+    width: 170px;
+}
+.int[data-tooltip]:hover::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    background-color: black;
+    color: white;
+    border: 1px solid #fff;
+    padding: 2px 4px;
+    border-radius: 4px;
+    margin-left: 20px;
+    text-transform: capitalize;
+}
+
+.string[data-tooltip]:hover::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    background-color: black;
+    color: white;
+    border: 1px solid #fff;
+    padding: 2px 4px;
+    border-radius: 4px;
+    margin-left: 20px;
+    text-transform: capitalize;
+}
+
+.date[data-tooltip]:hover::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    background-color: black;
+    color: white;
+    border: 1px solid #fff;
+    padding: 2px 4px;
+    border-radius: 4px;
+    margin-left: 20px;
+    text-transform: capitalize;
+}
+
+.float[data-tooltip]:hover::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    background-color: black;
+    color: white;
+    border: 1px solid #fff;
+    padding: 2px 4px;
+    border-radius: 4px;
+    margin-left: 20px;
+    text-transform: capitalize;
+}
+
+.bool[data-tooltip]:hover::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    background-color: black;
+    color: white;
+    border: 1px solid #fff;
+    padding: 2px 4px;
+    border-radius: 4px;
+    margin-left: 20px;
+    text-transform: capitalize;
+}
+
+.link[data-tooltip]:hover::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    background-color: black;
+    color: white;
+    border: 1px solid #fff;
+    padding: 2px 4px;
+    border-radius: 4px;
+    margin-left: 20px;
+    text-transform: capitalize;
+}
+
+.list[data-tooltip]:hover::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    background-color: black;
+    color: white;
+    border: 1px solid #fff;
+    padding: 2px 4px;
+    border-radius: 4px;
+    margin-left: 20px;
+    text-transform: capitalize;
+}
+
+.user[data-tooltip]:hover::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    background-color: black;
+    color: white;
+    border: 1px solid #fff;
+    padding: 2px 4px;
+    border-radius: 4px;
+    margin-left: 20px;
+    text-transform: capitalize;
+}
+
+.version[data-tooltip]:hover::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    background-color: black;
+    color: white;
+    border: 1px solid #fff;
+    padding: 2px 4px;
+    border-radius: 4px;
+    margin-left: 20px;
+    text-transform: capitalize;
+}
+
+.file[data-tooltip]:hover::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    background-color: black;
+    color: white;
+    border: 1px solid #fff;
+    padding: 2px 4px;
+    border-radius: 4px;
+    margin-left: 20px;
+    text-transform: capitalize;
+}
+
+.key[data-tooltip]:hover::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    background-color: black;
+    color: white;
+    border: 1px solid #fff;
+    padding: 2px 4px;
+    border-radius: 4px;
+    margin-left: 20px;
+    text-transform: capitalize;
+}
+
+.text[data-tooltip]:hover::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    background-color: black;
+    color: white;
+    border: 1px solid #fff;
+    padding: 2px 4px;
+    border-radius: 4px;
+    margin-left: 20px;
+    text-transform: capitalize;
+}
+
+.attachment[data-tooltip]:hover::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    background-color: black;
+    color: white;
+    border: 1px solid #fff;
+    padding: 2px 4px;
+    border-radius: 4px;
+    text-transform: capitalize;
+}
+
+.enumeration[data-tooltip]:hover::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    background-color: black;
+    color: white;
+    border: 1px solid #fff;
+    padding: 2px 4px;
+    border-radius: 4px;
+    text-transform: capitalize;
+}
+
+.controller-projects.action-index .no-tooltip[data-tooltip]:hover::after {
+    display: none;
+}
+
+
+.controller-projects.action-index table.list td {
+    height: 43px;
+    position: relative !important;
+}
+
+.controller-projects.action-index .name a,.controller-projects.action-index td.homepage span.td_text,.controller-projects.action-index td.parent_id span.td_text{
+    display: inline-block;
+    max-width: 200px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+  
+  .controller-projects.action-index .name .edit-issue {
+    flex-grow: 1;
+  }
+
+.controller-projects.action-index .testInput{
+    width: 145px;
+}
+/* .controller-projects.action-index a.project.public.icon-user.my-project{
+    display: inline-block;
+} */
+#dynamic-edit-project-name{
+    width: 375px;
+} 
+.controller-projects.action-index #projects-index a.project .div_text{
+    padding-right: 15px;
+}
+.controller-projects.action-index #projects-index a.project .edit-issue{
+    margin-left: -10px !important;
+}
+
+@media only screen and (min-width: 1557px) {
+
+    .controller-projects.action-index .string span.div_text,
+    .controller-projects.action-index .link span.div_text,
+    .controller-projects.action-index .float span.div_text,
+    .controller-projects.action-index .int span.div_text,
+    .controller-projects.action-index .int span.div_text,
+    .controller-projects.action-index .list span.div_text,
+    .controller-projects.action-index .user span.div_text,
+    .controller-projects.action-index .version span.div_text,
+    .controller-projects.action-index .bool span.div_text,
+    .controller-projects.action-index .text span.div_text,
+    .controller-projects.action-index .attachment span.div_text,
+    .controller-projects.action-index .enumeration span.div_text {
+        max-width: 8rem;
+    }
+}
+
+@media only screen and (min-width: 1241px) and (max-width: 1556px) {
+
+    .controller-projects.action-index .string span.div_text,
+    .controller-projects.action-index .link span.div_text,
+    .controller-projects.action-index .float span.div_text,
+    .controller-projects.action-index .int span.div_text,
+    .controller-projects.action-index .int span.div_text,
+    .controller-projects.action-index .list span.div_text,
+    .controller-projects.action-index .user span.div_text,
+    .controller-projects.action-index .version span.div_text,
+    .controller-projects.action-index .bool span.div_text,
+    .controller-projects.action-index .text span.div_text,
+    .controller-projects.action-index .attachment span.div_text,
+    .controller-projects.action-index .enumeration span.div_text {
+        max-width: 8rem;
+    }
+}
+
+@media only screen and (min-width: 900px) and (max-width: 1240px) {
+
+    .controller-projects.action-index .string span.div_text,
+    .controller-projects.action-index .link span.div_text,
+    .controller-projects.action-index .float span.div_text,
+    .controller-projects.action-index .int span.div_text,
+    .controller-projects.action-index .int span.div_text,
+    .controller-projects.action-index .list span.div_text,
+    .controller-projects.action-index .user span.div_text,
+    .controller-projects.action-index .version span.div_text,
+    .controller-projects.action-index .bool span.div_text,
+    .controller-projects.action-index .text span.div_text,
+    .controller-projects.action-index .attachment span.div_text,
+    .controller-projects.action-index .enumeration span.div_text {
+        max-width: 10rem;
+    }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 899px) {
+
+    .controller-projects.action-index .string span.div_text,
+    .controller-projects.action-index .link span.div_text,
+    .controller-projects.action-index .float span.div_text,
+    .controller-projects.action-index .int span.div_text,
+    .controller-projects.action-index .int span.div_text,
+    .controller-projects.action-index .list span.div_text,
+    .controller-projects.action-index .user span.div_text,
+    .controller-projects.action-index .version span.div_text,
+    .controller-projects.action-index .bool span.div_text,
+    .controller-projects.action-index .text span.div_text,
+    .controller-projects.action-index .attachment span.div_text,
+    .controller-projects.action-index .enumeration span.div_text {
+        max-width: 9rem;
+    }
+}
+
+@media only screen and (min-width: 450px) and (max-width: 767px) {
+
+    .controller-projects.action-index .string span.div_text,
+    .controller-projects.action-index .link span.div_text,
+    .controller-projects.action-index .float span.div_text,
+    .controller-projects.action-index .int span.div_text,
+    .controller-projects.action-index .int span.div_text,
+    .controller-projects.action-index .list span.div_text,
+    .controller-projects.action-index .user span.div_text,
+    .controller-projects.action-index .version span.div_text,
+    .controller-projects.action-index .bool span.div_text,
+    .controller-projects.action-index .text span.div_text,
+    .controller-projects.action-index .attachment span.div_text,
+    .controller-projects.action-index .enumeration span.div_text {
+        max-width: 10rem;
+    }
+}
+
+@media only screen and (min-width: 401px) and (max-width: 449px) {
+
+    .controller-projects.action-index .string span.div_text,
+    .controller-projects.action-index .link span.div_text,
+    .controller-projects.action-index .float span.div_text,
+    .controller-projects.action-index .int span.div_text,
+    .controller-projects.action-index .int span.div_text,
+    .controller-projects.action-index .list span.div_text,
+    .controller-projects.action-index .user span.div_text,
+    .controller-projects.action-index .version span.div_text,
+    .controller-projects.action-index .bool span.div_text,
+    .controller-projects.action-index .text span.div_text,
+    .controller-projects.action-index .attachment span.div_text,
+    .controller-projects.action-index .enumeration span.div_text {
+        max-width: 7rem;
+    }
+}
+
+@media only screen and (min-width: 320px) and (max-width: 400px) {
+
+    .controller-projects.action-index .string span.div_text,
+    .controller-projects.action-index .link span.div_text,
+    .controller-projects.action-index .float span.div_text,
+    .controller-projects.action-index .int span.div_text,
+    .controller-projects.action-index .int span.div_text,
+    .controller-projects.action-index .list span.div_text,
+    .controller-projects.action-index .user span.div_text,
+    .controller-projects.action-index .version span.div_text,
+    .controller-projects.action-index .bool span.div_text,
+    .controller-projects.action-index .text span.div_text,
+    .controller-projects.action-index .attachment span.div_text,
+    .controller-projects.action-index .enumeration span.div_text{
+        max-width: 14rem;
+    }
+}
+
+.controller-projects.action-index select#custom_cf_Dropdown_list[multiple="multiple"] {
+    height: 85px;
+    position: absolute;
+    z-index: 10;
+}
+
+.controller-projects.action-index .radio-buttons {
+    padding: 5px 10px;
+    z-index: 10;
+    position: absolute;
+    background-color: white;
+    border: 1px solid #0000001c;;
+}
+
+.controller-projects.action-index .checkbox-div {
+    z-index: 10;
+    position: absolute;
+    background: white;
+    border: 1px solid #0000001c;
+    padding: 5px 10px;
+}

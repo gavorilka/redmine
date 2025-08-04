@@ -1,0 +1,6 @@
+<%= raw @cms_snippet_tags.map { |cms_snippet_tag| {
+        'id' => @names_only ? cms_snippet_tag.name : cms_snippet_tag.id,
+        'text' => cms_snippet_tag.name
+      }
+    }.to_json
+%>

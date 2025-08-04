@@ -1,0 +1,36 @@
+<div class="contextual">
+<%= link_to l(:label_cms_snippet_new), new_cms_snippet_path, :class => 'icon icon-add' %>
+<%= link_to l(:button_import), cms_import_path(:object_type => CmsSnippet.name.underscore), :class => 'icon icon-duplicate' %>
+</div>
+
+<h2><%= l(:label_cms_snippet_plural) %></h2>
+
+<%= form_tag(cms_snippets_path, { :method => :get, :id => 'snippets_form' }) do %>
+<fieldset><legend><%= l(:label_filter_plural) %></legend>
+<label for='name'><%= l(:label_cms_name) %>:</label>
+<%= text_field_tag 'name', params[:name], :size => 30 %>
+
+<label for='filter_id'><%= l(:label_cms_filter) %>:</label>
+<%= select_tag 'filter_id', filter_options_for_select(params[:filter_id]), :class => "small", :onchange => "this.form.submit(); return false;"  %>
+<% if CmsSnippet.available_tags.any? && tags = CmsSnippet.available_tags.map %>
+  <label for='tags'><%= l(:label_cms_tags) %>:</label>
+  <%= select_tag 'tag', tags_options_for_select(CmsSnippet, params[:tag]), :class => "small", :onchange => "this.form.submit(); return false;"  %>
+<% end %>
+
+<%= submit_tag l(:button_apply), :class => "small", :name => nil %>
+<%= link_to l(:button_clear), cms_snippets_path, :class => 'icon icon-reload' %>
+</fieldset>
+<%= hidden_field_tag 'encoding', l(:general_csv_encoding) unless l(:general_csv_encoding).casecmp('UTF-8') == 0 %>
+<% end %>
+&nbsp;
+
+<div class="autoscroll"  id="cms_snippets">
+  <%= render 'list' %>
+</div>
+<span class="pagination"><%= pagination_links_full @snippets_pages, @snippets_count %></span>
+
+<% content_for :sidebar do %>
+  <% render :partial => 'cms_settings/menu' %>
+<% end %>
+
+<% html_title(l(:label_cms_snippet_plural)) -%>

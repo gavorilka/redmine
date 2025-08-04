@@ -1,0 +1,61 @@
+<div class="contextual">
+  <%= link_to l(:label_cms_preview), preview_cms_part_path(@cms_part), :class => 'icon icon-preview'  %>
+  <%= link_to l(:label_cms_preview_page), preview_cms_page_path(@cms_part.page), :class => 'icon icon-preview'  %>
+  <%= link_to l(:label_history), cms_object_history_path(@cms_part, :object_type => @cms_part.class.name.underscore), :class => 'icon icon-history' %>
+  <%= link_to l(:cms_label_duplicate), new_cms_part_path(:copy_from => @cms_part), :class => 'icon icon-duplicate' %>
+  <%= delete_link cms_part_path(@cms_part) if User.current.admin? %>
+</div>
+
+
+<h2><%= link_to l(:label_cms_page_plural), cms_pages_path %>
+  <% @cms_page.ancestors.each do |page| %>
+    &#187; <%= link_to page.slug, edit_cms_page_url(page) %>
+  <% end %>
+    &#187; <%= @cms_page.slug %>
+</h2>
+
+<div class="tabs part-tabs">
+  <ul>
+    <li><%= link_to(l(:label_cms_page), edit_cms_page_path(@cms_part.page), :class => "page") %></li>
+    <% @cms_part.page.parts.active.order(:position).each do |part| %>
+      <li><%= link_to(part.title, edit_cms_part_path(part), :class => "#{(@cms_part.id == part.id ? 'selected' : nil)} #{'locked' unless part.active?}") %></li>
+    <% end %>
+    <li><%= link_to "+", new_cms_part_path(:page_id => @cms_part.page.id) %></li>
+  </ul>
+  <div class="tabs-buttons" style="display:none;">
+    <button class="tab-left" type="button" onclick="moveTabLeft(this);"></button>
+    <button class="tab-right" type="button" onclick="moveTabRight(this);"></button>
+  </div>
+</div>
+
+<%= labelled_form_for :cms_part, @cms_part, :url => { :action => 'update', :id => @cms_part},
+  :html => { :id => 'part_form', :multipart => true, :method => :put } do |f| %>
+
+<%= render :partial => 'form', :locals => { :f => f } %>
+<% if @cms_page.attachments.any? %>
+    <fieldset><legend><%= l(:label_attachment_plural) %></legend>
+      <%= link_to_cms_attachments @cms_page, :thumbnails => true  %>
+    </fieldset>
+    <br/>
+  <% end %>
+
+<!-- <fieldset><legend><%= l(:label_attachment_plural) %></legend>
+  <%= link_to_cms_attachments @cms_part, :thumbnails => true  %>
+</fieldset><br/> -->
+
+<% content_for :sidebar do %>
+  <% render :partial => 'cms_settings/menu' %>
+<% end %>
+
+<%= submit_tag l(:button_save) %>
+<%= link_to l(:label_cms_apply), "#", :style => "margin-left:10px;", :remote => true, :onclick => "editor.save(); $.ajax({url: '#{escape_javascript cms_part_path(@cms_part)}', type: \'post\', dataType: \'script\', data: $(\'#part_form\').serialize()}); $('textarea').removeData('changed'); return false;"%>
+<% end %>
+
+<% content_for :header_tags do %>
+  <div class="contextual page-edit" id="float_buttons">
+    <%= link_to l(:label_cms_apply), "#", :remote => true, :onclick => "editor.save(); $.ajax({url: '#{escape_javascript cms_part_path(@cms_part)}', type: \'post\', dataType: \'script\', data: $(\'#part_form\').serialize()}); $('textarea').removeData('changed'); return false;"%>
+  </div>
+<% end %>
+<%= javascript_tag "$('.contextual.page-edit').draggable();" %>
+
+<% html_title(@cms_part.title + " " + @cms_part.page.name) -%>

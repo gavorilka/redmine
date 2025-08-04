@@ -1,0 +1,282 @@
+.controller-settings.action-plugin #context-menu{
+  position: absolute;
+  z-index: 40;
+  font-size: 0.9em;
+}
+.controller-settings.action-plugin #context-menu li {
+  position: relative;
+  padding-left: 15px;
+  z-index: 39;
+  border: 1px solid white;
+  list-style-type: none;
+}
+.controller-settings.action-plugin #context-menu ul {
+  cursor: pointer;
+  width: 100px;
+  border: 1px solid #ccc;
+  background: white;
+  list-style: none;
+  padding: 2px;
+  border-radius: 2px;
+}
+.controller-settings.action-plugin #context-menu li .icon-del {
+  background-image: url(../images/delete.png);
+  background-position: left;
+}
+ul.tags { list-style: none; padding: 0px; }
+ul.tags li { margin: .25em 0px; }
+
+.tag-label-color {
+    padding: 7px 9px;
+    /* border: 1px solid rgba(0, 0, 0, 0.2); */
+    border-radius: 6px;
+    display: inline-block;
+    margin: 1px;
+}
+.tag-label-without-color {
+  padding: 7px 9px;
+  border-radius: 6px;
+  display: inline-block;
+  margin: 1px;
+  border: 1px solid #bbbbbb !important;
+  margin-right: 5px;
+  padding: 4px 6px;
+}
+
+.tag-label-color a {
+  color: white;
+}
+
+table.list tr.issue .tag-label-color a,
+.tags .tag-label-color a,
+.issue .tag-label-color a { color: inherit; }
+
+tr.issue td.tags {
+  text-align: left;
+  white-space: normal;
+}
+
+div.tags .tag-nube-1 { font-size: .8em; }
+div.tags .tag-nube-2 { font-size: .9em; }
+div.tags .tag-nube-3 { font-size: 1em; }
+div.tags .tag-nube-4 { font-size: 1.1em; }
+div.tags .tag-nube-5 { font-size: 1.2em; }
+div.tags .tag-nube-6 { font-size: 1.3em; }
+div.tags .tag-nube-7 { font-size: 1.4em; }
+div.tags .tag-nube-8 { font-size: 1.5em; }
+
+.tag-count { font-size: .75em; margin-left: .5em; }
+
+ul.tagit {
+  border: 1px solid #d7d7d7;
+  -moz-border-radius: 0px;
+  -webkit-border-radius: 0px;
+  -khtml-border-radius: 0px;
+  border-radius: 0px;
+  background: white;
+  padding: 0px;
+  margin: 0px;
+  width: 96%;
+}
+
+ul.tagit li.tagit-choice {
+  font-weight: normal;
+  -moz-border-radius: 0px;
+  border-radius: 0px;
+  -webkit-border-radius: 0px;
+  font-size: 11px;
+  color: inherit;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  background-color: #f7f7f7;
+  margin: 1px;
+}
+
+ul.tagit li.tagit-choice:hover, ul.tagit li.tagit-choice.remove {
+  background-color: #e5e5e5;
+  text-decoration: none;
+  color: black;
+}
+
+ul.tagit li.tagit-choice a.tagit-close {
+  text-decoration: none;
+}
+
+ul.tagit li.tagit-choice .tagit-close {
+  right: .4em;
+}
+
+ul.tagit li.tagit-choice .ui-icon {
+  display: none;
+}
+
+ul.tagit li.tagit-choice .tagit-close .text-icon{
+  display: inline;
+  line-height: 16px;
+  
+}
+
+ul.tagit li.tagit-choice .tagit-close .text-icon:hover {
+  color: black;
+}
+
+ul.tagit li.tagit-new input {
+  font-size: 11px;
+  background: white;
+}
+
+ul.tagit li.tagit-new {
+  padding: 0;
+  margin: 0;
+}
+
+button.btn-btn-info {
+  margin-left: 5px;
+}
+
+/* bulk delete pop-up */
+.custom-menu {
+  display: none;
+  z-index: 1000;
+  position: absolute;
+  overflow: hidden;
+  border: 1px solid #CCC;
+  white-space: nowrap;
+  font-family: sans-serif;
+  background: #FFF;
+  color: #333;
+  border-radius: 5px;
+  padding: 0;
+}
+
+.custom-menu li {
+  padding: 8px 12px;
+  cursor: pointer;
+  list-style-type: none;
+  transition: all .3s ease;
+  user-select: none;
+}
+
+.custom-menu li:hover {
+  background-color: #DEF;
+}
+
+.ui-widget.ui-widget-content{
+  padding: 5px !important;
+}
+.tag_box {
+  background-color: #fff8f800 !important;
+  display: inline-flex;
+  width: 90%;
+  margin: -20px 50px 3px !important;
+}
+#issue_tags{
+width: 90%;
+}
+.for_tag{
+  margin-top: -20px;
+}
+
+.tagedit_button{
+  padding-right: 8px;
+    margin: 2px;
+    display: inline-flex;
+    gap: 10px;
+    padding-left: 10px;
+}
+ul.tagit{
+  width: auto !important;
+}
+.value-tag {
+  margin-right: 30px;
+}
+.tag_label > span {
+  line-height: 20px;
+}
+#tag_name{
+  width: 350px;
+}
+@media screen and (max-width :500px) {
+  .tag_box{
+    display: block;
+    width: 100% !important;
+    margin: 0px !important;
+
+  }
+  .tagedit_button{
+    flex-direction:column;
+    gap: 2px !important;
+  }
+}
+
+span.tag-label{
+    border: 1px solid #bbbbbb !important;
+    border-radius: 4px;
+    margin-right: 5px;
+    padding: 4px 6px;
+    border-radius: 6px;
+}
+html[lang="ar"] .tag_box{
+  margin: -30px -4px 3px !important;
+  border-color: #ffffdd !important;
+}
+html[lang="ar"] .icon.icon-edit.icon-edit-issue,html[lang="ar"] .icon.icon-del.icon-del-issue,html[lang="ar"] .icon.icon-edit-project.icon-edit,html[lang="ar"] .icon.icon-del-project.icon-del,html[lang="ar"] .icon.icon-edit.edit-tag.icon-edit-time,html[lang="ar"] .icon.icon-del.icon-del-time{
+  padding-right: 2em !important;
+}
+html[lang="ar"] .tagit-new .ui-widget-content.ui-autocomplete-input{
+  text-align: left !important;
+}
+
+.plugin.plugin-flux_tags #tab-content-project .tagSearchContainer,
+.plugin.plugin-flux_tags #tab-content-issue .tagSearchContainer,
+.plugin.plugin-flux_tags #tab-content-time_entry .tagSearchContainer 
+{
+  /* margin-bottom: 10px;
+  float: right; */
+  margin-bottom: 7px;
+  float: right;
+  margin-top: -8px;
+}
+
+.plugin.plugin-flux_tags #tab-content-issue #tag-search,
+.plugin.plugin-flux_tags #tab-content-time_entry #tag-search-time-entry,
+.plugin.plugin-flux_tags #tab-content-project #tag-search-project
+{
+  width: 300px; 
+  padding: 8px; 
+  height: 30px; 
+}
+
+.plugin.plugin-flux_tags #tab-content-project #clear-search-project,
+.plugin.plugin-flux_tags #tab-content-issue #clear-search-issue,
+.plugin.plugin-flux_tags #tab-content-time_entry #clear-search-time-entry
+{
+  height: 30px; 
+  cursor: pointer;
+  margin-left: 5px;
+}
+
+.plugin.plugin-flux_tags #tab-content-issue .nodata,
+.plugin.plugin-flux_tags #tab-content-time_entry .nodata,
+.plugin.plugin-flux_tags #tab-content-project .nodata 
+{
+  padding: 0px !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.plugin.plugin-flux_tags #tab-content-project .tagSearchContainer button#clear-search-project:disabled,
+.plugin.plugin-flux_tags #tab-content-issue .tagSearchContainer button#clear-search-issue:disabled,
+.plugin.plugin-flux_tags #tab-content-time_entry .tagSearchContainer button#clear-search-time-entry:disabled {
+  opacity: 0.5;
+  cursor: not-allowed !important;
+}
+
+
+
+#bulk_edit_form .box.tabular .splitcontent span.select2.select2-container.select2-container--open .selection span ul li.select2-selection__choice > button.select2-selection__choice__remove{
+  height: auto;
+  top: 1px;
+}

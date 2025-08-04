@@ -1,0 +1,30 @@
+# English strings go here for Rails i18n
+en:
+  button_add_notes: Add notes
+  label_for_delete_message: "Are you sure you want to delete this tag?"
+  label_for_delete_tah: "Delete Tag"
+  add_tags_placeholder: "Add Tags"
+  select_tags_label: "Select or add tags"
+  my_label: "My label"
+  # issue_tags_manage_tags: "Manage Tags"
+  setting_issue_tags: "Cancel"
+  issue_tags_tag: "Edit Tag"
+  tag_name: "Tag Name"
+  field_tags: "Tags"
+  field_tag_list: "Tag list"
+  button_add_tags: "Add Tags"
+  tags: "Tags"
+  button_add_tag: "Add Tag"
+  label_edit_tags: "Edit Tags"
+
+  label_issue_tags: "Issue Tags"
+  label_time_entry_tags: "Time Entry Tags"
+  label_project_tags: "Project Tags"
+  label_tags: "Tags"
+  label_for_add: "Add"
+  label_for_used_color: "Use colored tag"
+  label_delete: "Delete"
+  label_for_pages: "Pages: "
+  tags:
+    delete_success: "Tag deleted successfully"
+    delete_failure: "Tag not found"

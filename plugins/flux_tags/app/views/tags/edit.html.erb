@@ -1,0 +1,17 @@
+<%= stylesheet_link_tag 'flux_tags', plugin: :flux_tags %>
+<%= javascript_include_tag 'tags.js', plugin: :flux_tags %>
+<h2>
+  <%= h l(:issue_tags_tag) + ': ' + @tag.name %>
+</h2>
+<%= form_tag tag_path(@tag, tab: params[:tab]), class: 'tabular', method: :put do %>
+  <%=  error_messages_for 'tag' %>
+  <div class="box">
+    <p>
+      <label for="tag_name"><%= l(:tag_name) %></label>
+     <%= text_field_tag 'tag[name]', @tag.name, id: 'tag_name', maxlength: 60, onkeypress: "return validateKeyPress(event)" %>
+    </p>
+  </div>
+  <%= submit_tag l(:button_save) %>
+  <%= link_to l(:setting_issue_tags), controller: 'settings', action: 'plugin',
+        id: 'flux_tags', tab: params[:tab] %>
+<% end %>

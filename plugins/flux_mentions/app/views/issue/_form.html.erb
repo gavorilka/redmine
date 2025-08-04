@@ -1,0 +1,104 @@
+
+<% if User.current.allowed_to?(:edit_issues, @project ,:global=> true ) || User.current.allowed_to?(:add_issues, @project , :global=> true ) || User.current.admin? %>
+
+
+<% if @project %>
+  <% users = @project.users.active.reject { |u| u.mail.blank? } %>
+<% else %>
+
+<script>
+  var selectedValue  ;
+  var usersData ;
+  var projectField = document.getElementById('issue_project_id');
+    if(projectField !== null) { 
+     selectedValue = projectField.value;
+     console.log(selectedValue,'project value');
+   
+    }
+    
+  
+ 
+</script>
+ <% if defined?(selectedValue) %>
+<%= @project = selectedValue %>
+<% if @project.present? %>
+<%= @principal = Project.find(@project).principals %>
+  <% users = @principal.users.active.reject { |u| u.mail.blank? } %>
+  <% end %>
+  <% else %>
+    <% users = User.active.reject { |u| u.mail.blank? } %>
+  <% end %>
+<% end %>
+
+
+
+
+<% users_data = users.map { |user| { id: user.id, login: user.login } }.to_json %>
+<% symbol = Setting.plugin_flux_mentions['symbol'] %>
+
+<script>
+
+
+$(document).ready(function() {
+  var usersData = <%= users_data.html_safe %>;
+  var symbol = '<%= symbol %>';
+
+  var tributed = new Tribute({
+    values: usersData,
+    lookup: 'login',
+    fillAttr: 'login',
+     requireLeadingSpace: 'true',
+    selectTemplate: function(item) {
+      return symbol + item.original.login;
+    },
+
+    trigger: symbol 
+    
+  });
+
+
+
+   var $descriptionTextarea = $('textarea#issue_description');
+   tributed.attach($descriptionTextarea);  
+  // $descriptionTextarea.on('keydown', function(event) {
+  //   if (event.key === symbol   ) {
+      
+  //     //tributed.detach($descriptionTextarea,[0]);
+  //     // this.focus();
+  //     // tributed.showMenuForCollection(this, false); 
+  //     tributed.attach($descriptionTextarea,[0]);   
+  //   } 
+
+  // });
+// ---------
+
+
+
+// --------
+
+
+    var $notesTextarea = $('textarea#issue_notes');
+    tributed.attach($notesTextarea); 
+
+  //  $notesTextarea.on('keydown', function(event) {
+  //   if (event.key === symbol  ) {
+  //     //tributed.attach($notesTextarea,[0]);
+  //     // this.focus();
+  //     // tributed.showMenuForCollection(this, false);
+  //     tributed.attach($notesTextarea,[0]);
+  //      }   
+  //   });
+  });
+
+
+
+
+</script>
+<style>
+
+.tribute-container {
+    height: 110px;
+}
+
+</style>
+<%end%>

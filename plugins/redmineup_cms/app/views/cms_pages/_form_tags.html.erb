@@ -1,0 +1,11 @@
+<label for="page_tag_list"><%= l(:label_cms_tags) %></label>
+<span class="cms-page-tags-edit">
+  <%= select2_tag 'cms_page[tag_list]',
+                  options_from_collection_for_select(@cms_page.tags, 'name', 'name', @cms_page.tags.map(&:name)),
+                  :multiple => true,
+                  :width => '95%',
+                  :url => auto_complete_cms_page_tags_path(names: true),
+                  :placeholder => '+ add tag',
+                  :include_blank => true,
+                  :tags => true %>
+</span>

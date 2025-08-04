@@ -1,0 +1,123 @@
+.controller-issues.action-index .edit-issue
+{
+    cursor: pointer;
+    position: absolute;
+    margin-left: 2px !important;
+}  
+.controller-issues.action-index  table.list td {
+  height:43px;
+  position: relative !important;
+  
+}
+.controller-issues .issues table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.controller-issues .issues th.checkbox,.controller-issues .issues td.checkbox{
+  min-width: 60px;
+  padding-right: 0px !important;
+}
+.controller-issues .issues th.id,.controller-issues .issues td.id{
+  min-width: 60px;
+  padding-right: 0px !important;
+}
+.controller-issues .issues th.start_date,.controller-issues .issues td.start_date{
+  min-width: 130px;
+}
+.controller-issues .issues th.buttons,.controller-issues .issues td.buttons{
+  min-width: 40px;
+}
+.controller-issues .issues th.start_date+td,.controller-issues .issues td.start_date+td{
+  min-width: 130px;
+}
+.controller-issues .issues th,.controller-issues .issues td {
+  min-width: 120px;
+}
+
+.controller-issues td.subject {
+  min-width: 500px !important;
+}
+.controller-issues .issues td.done_ratio {
+  padding-right: 50px !important;
+}
+.controller-issues .issues td.subject + td{
+  height: 30px;
+  width: 230px;
+}
+.controller-issues .issues td.category + td,.controller-issues .issues td.tracker + td{
+  height: 30px;
+  width: 120px;
+}
+.controller-issues.action-index table.list td.tracker,.controller-issues.action-index table.list td.priority{
+  white-space: normal;
+}
+.controller-issues .issues th.parent-subject{
+  min-width: 250px;
+}
+.controller-issues .issues td.category + td select,.controller-issues .issues td.project + td select,.controller-issues .issues td.tracker + td select,.controller-issues .issues td.priority + td select,.controller-issues .issues td.assigned_to + td select,.controller-issues .issues td.fixed_version + td select,
+.controller-issues .issues td.user + td select{
+  width: 120px;
+}
+.controller-issues .issues td.project + td{
+  height: 30px;
+  width: 120px;
+}
+.controller-issues .issues th.relations,.controller-issues .issues td.relations{
+text-align: center;
+}
+.controller-issues.action-index table.list td.done_ratio table.progress td{
+  height: 11px;
+  /* padding-right: 50px !important; */
+}
+
+.controller-issues .issues td table td {
+  min-width: auto;
+}
+
+.controller-issues.action-index table.list td.done_ratio + td select{
+  min-width: 100px;
+}
+.controller-issues.action-index table.list td.status span.edit-issue,.controller-issues.action-index table.list td.estimated_hours{
+  margin-top: -2px !important;
+}
+
+
+.story_points .edit-issue{
+margin-top: 0px !important;
+}
+.controller-issues table.list.issues th {
+  color: #169;
+}
+
+
+.controller-issues .subject a {
+  display: inline-block;
+  max-width: 470px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.controller-issues .subject .edit-issue {
+  flex-grow: 1;
+}
+.controller-issues.action-index table.list td.text{
+  text-align: center;
+}
+.controller-issues.action-index table.list td.text +td input,.controller-issues.action-index table.list td.link +td input{
+  width: 120px;
+}
+.controller-issues.action-index table.list td.link +td{
+  height: 30px;
+}
+/* .subject-text {
+  display: inline-block;
+  width: 200px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+} */
+
+.controller-issues.action-index table.list td.user span.edit-issue,.controller-issues.action-index table.list td.link span.edit-issue,.controller-issues.action-index table.list td.int span.edit-issue,.controller-issues.action-index table.list td.float span.edit-issue,.controller-issues.action-index table.list td.date span.edit-issue,.controller-issues.action-index table.list td.bool span.edit-issue,.controller-issues.action-index table.list td.string span.edit-issue,.controller-issues.action-index table.list td.version span.edit-issue,.controller-issues.action-index table.list td.list span.edit-issue,.controller-issues.action-index table.list td.done_ratio span.edit-issue,.controller-issues.action-index table.list td.estimated_hours span.edit-issue,.controller-issues.action-index table.list td.due_date span.edit-issue,.controller-issues.action-index table.list td.start_date span.edit-issue,.controller-issues.action-index table.list td.fixed_version span.edit-issue,.controller-issues.action-index table.list td.assigned_to span.edit-issue,.controller-issues.action-index table.list td.subject span.edit-issue,.controller-issues.action-index table.list td.priority span.edit-issue,.controller-issues.action-index table.list td.tracker span.edit-issue,.controller-issues.action-index table.list td.project span.edit-issue,.controller-issues.action-index table.list td.text span.edit-issue{
+  margin-top: -2px;
+}

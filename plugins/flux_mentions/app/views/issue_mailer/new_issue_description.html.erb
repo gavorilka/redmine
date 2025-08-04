@@ -1,0 +1,18 @@
+
+<h4><%= link_to "[#{@issue.project.name} - #{@issue.tracker.name} ##{@issue.id}] #{@issue.subject}", issue_url(@issue) %></h4>
+
+<br><br>
+<p>You have been mentioned by <strong> <%= @current %></strong> on <strong> <%= Date.today.strftime('%d-%m-%Y') %> </strong>.</p>
+
+
+
+<h3> Issue Description :</h3>
+
+<%#= sanitize(textilizable(@issue, :description, { headings: false, only_path: false }).gsub('.', ' ').gsub(Regexp.new(Regexp.escape(Setting.plugin_flux_mentions['symbol'])), '')) %>
+<%= sanitize(textilizable(@issue, :description, { headings: false, only_path: false }).gsub(/<a[^>]*href="[^"]*\/users\/[^"]*"[^>]*>([^<]+)<\/a>/, '\1').gsub('.', ' ').gsub(Regexp.new(Regexp.escape(Setting.plugin_flux_mentions['symbol'])), '')) %>
+
+<hr>
+
+<p> Thank you for your attention to this matter.<br>
+    This is a system generated email. </p>
+ 

@@ -1,0 +1,164 @@
+.tox-notifications-container {
+  display: none;
+}
+
+.description #valid_svg, .description #refuse_svg{
+  cursor: pointer;
+}
+/* div#description__edit {
+  height: 200px;
+  background: #fff;
+} */
+
+.save_desc {
+  background-color: #27ae60;
+  color: #fff;
+  display: none;
+  float: right;
+  border-radius: 5px;
+  padding: 3px;
+  margin: 4px 3px 3px 3px;
+  cursor: pointer;
+
+}
+
+.cancel_desc {
+  background-color: #c0392b;
+  color: #fff;
+  display: none;
+  float: right;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 4px 3px 3px 3px;
+  cursor: pointer;
+}
+
+.tox.tox-tinymce {
+  margin-top: 15px;
+}
+
+.save_desc:hover {
+  background-color: #28824e;
+}
+
+.cancel_desc:hover {
+  background-color: #962d22;
+}
+
+#content>div.issue>div.description>div.tox.tox-tinymce>div.tox-editor-container>div.tox-statusbar>div.tox-statusbar__text-container>span>a>svg {
+  display: none;
+}
+
+body>div.tox.tox-silver-sink.tox-tinymce-aux>div.tox-pop.tox-pop--top>div>div>div:nth-child(1)>button[title="Table properties"] {
+  display: none !important;
+}
+
+/* #editor2 .ql-editor {
+  max-height: 200px;
+  min-height: 200px;
+  background-color: #fff;
+  padding-top: 1px;
+} */
+
+#description__edit .ql-editor{
+  max-height: 200px;
+  min-height: 200px;
+  background-color: #fff;
+  padding-top: 1px;
+}
+
+/* .ql-editor {
+  height: 200px;
+  background-color: #fff;
+} */
+
+.ql-toolbar.ql-snow {
+  background-color: #fff;
+}
+
+.ql-tooltip.ql-editing {
+  position: initial;
+  margin-top: -10px !important;
+}
+
+.ql-snow .ql-tooltip {
+  position: initial;
+  margin-top: -10px;
+}
+
+/* loading */
+.checkmark {
+  display: none;
+
+}
+
+.checkmark.draw:after {
+  animation-duration: 800ms;
+  animation-timing-function: ease;
+  animation-name: checkmark;
+  transform: scaleX(-1) rotate(135deg);
+}
+
+.checkmark.draw:after {
+  opacity: 1;
+  height: 1.8em;
+  width: 0.9em;
+  transform-origin: left top;
+  border-right: 4px solid #0094ff !important;
+  border-top: 4px solid #0094ffcc !important;
+  /* border-right:4px solid #FA602A;
+  border-top: 4px solid #F9B096; */
+  content: '';
+  left: 0.6em;
+  top: 1.5em;
+  position: absolute;
+}
+
+.circle-loader {
+  margin-bottom: 3.5em;
+  border: 4px solid rgba(0, 0, 0, 0.2);
+  /* border-left-color:#5cb85c; */
+  border-color: #393F45 #393F45 #393F45 transparent;
+  animation: loader-spin 1s infinite linear;
+  display: inline-block;
+  vertical-align: top;
+  border-radius: 50%;
+  width: 3em;
+  height: 3em;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  right: 50%;
+  bottom: 50%;
+  z-index: 10000;
+  /* transform: translate(-50%, -50%); */
+
+}
+
+.unknown-div {
+  background: white;
+  opacity: 0.5;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1040;
+
+}
+
+.controller-issues .unknown-div {
+  background: none !important;
+}
+
+.controller-issues.action-show .unknown-div {
+  background-color: #ffffff00 !important;
+  opacity: 0 !important;
+}
+
+.load-complete {
+  -webkit-animation: none;
+  animation: none;
+  border-color: #393F45 transparent #393F45 #393F45;
+  transition: border 500ms ease-out;
+}

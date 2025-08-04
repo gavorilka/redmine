@@ -1,0 +1,213 @@
+<div class="tags attribute">
+    <div class="label tag_label">
+      <span><%= l(:label_tags)%>:</span>
+    </div>
+    <div class="value-tag" >
+    <span id="tag-form"><%= safe_join(issue.tag_counts.collect {|t| render_tag_link(t, show_count: false, open_only: false) }, FluxTags.settings[:issues_use_colors].to_i > 0 ? ' ' : '') %></span>
+  </div>
+
+  
+
+
+
+
+
+
+
+  </div>
+<% if User.current.allowed_to?(:edit_issues, @project) || User.current.allowed_to?(:edit_own_issues, @project) || User.current.admin? %>
+ <% if User.current.admin? || User.current.allowed_to?(:manage_issues_tags, @project)  %>
+  <div class="contextual for_tag" >
+  <a id="tag_click" style="cursor: pointer;" ><%= l(:label_for_add) %></a>
+</div>
+ <% end %>
+ <% end %>
+
+ 
+
+    <fieldset class="box tag_box" style="display:none;" >
+        <div id="issue_tags">
+          <%= text_field_tag 'updateissue[tag_list]',
+                          [],
+                          width: '100%',
+                          multiple: true,
+                          size: 30,
+                          placeholder: '+ add tag',
+                          value: safe_join(issue.tag_counts.collect {|t|t.name + "," }) %>
+        </div>
+        <div class="tagedit_button" style="display: inline-flex;justify-content: space-around !important;gap: 10px;">
+        <%= submit_tag l(:button_save), :name => 'save_tag' , :id => 'save_tag'  %>
+        <%= submit_tag l(:button_cancel), :name => 'cancel' , :id => 'cancel_tag'  %>
+        </div>
+    </fieldset>
+
+
+      <%# <div class="contextual tagedit_button" style="display:none;"> %>
+        <%# <%= submit_tag l(:button_save), :name => 'save_tag' , :id => 'save_tag'  %> 
+        <%# <%= submit_tag l(:button_cancel), :name => 'cancel' , :id => 'cancel_tag'  %> 
+      <%# </div> %>
+
+
+<div id="tag_script_rerun">
+<%= javascript_tag "$('#updateissue_tag_list').tagit({
+  tagSource: function(search, showChoices) {
+    var that = this;
+    $.ajax({
+      url: '#{escape_javascript auto_complete_issue_tags_path(@issue.project)}',
+      data: {q: search.term},
+      method: 'GET',  // Add the GET method here
+      dataType: 'json',  // Add datatype as JSON
+      success: function(choices) {
+        if (!choices || choices.length === 0) {
+            console.warn('No tags found for:', search.term);
+            return;
+        }
+        showChoices(that._subtractArray(jQuery.parseJSON(choices), that.assignedTags()));
+      }
+    });
+  },
+  allowSpaces: true,
+  placeholderText: '#{j I18n.t('add_tags_placeholder')}',
+  autocomplete: true,
+  caseSensitive: true,
+  removeConfirmation: true,
+  showAutocompleteOnFocus: true,
+  tagLimit: 30,
+});" %>
+<%= javascript_tag do %>
+  $(document).on("change", ".attributes", function(event) {
+    if ($(event.target).is("input[type='date']")) {
+      setTimeout(function() {
+        $('#updateissue_tag_list').tagit({
+  tagSource: function(search, showChoices) {
+    var that = this;
+    $.ajax({
+      url: '#{escape_javascript auto_complete_issue_tags_path(@issue.project)}',
+      data: {q: search.term},
+      method: 'GET',  // Add the GET method here
+      dataType: 'json',  // Add datatype as JSON
+      success: function(choices) {
+        if (!choices || choices.length === 0) {
+            console.warn('No tags found for:', search.term);
+            return;
+        }
+        showChoices(that._subtractArray(jQuery.parseJSON(choices), that.assignedTags()));
+      }
+    });
+  },
+  allowSpaces: true,
+  placeholderText: '<%= j I18n.t("plugin_redmineflux_tags.add_tags_placeholder") %>',
+  autocomplete: true,
+  caseSensitive: true,
+  removeConfirmation: true,
+  showAutocompleteOnFocus: true,
+  tagLimit: 30,
+});
+      }, 4000);
+    } else {
+      setTimeout(function() {
+       $('#updateissue_tag_list').tagit({
+  tagSource: function(search, showChoices) {
+    var that = this;
+    $.ajax({
+      url: '#{escape_javascript auto_complete_issue_tags_path(@issue.project)}',
+      data: {q: search.term},
+      method: 'GET',  // Add the GET method here
+      dataType: 'json',  // Add datatype as JSON
+      success: function(choices) {
+        if (!choices || choices.length === 0) {
+            console.warn('No tags found for:', search.term);
+            return;
+        }
+        showChoices(that._subtractArray(jQuery.parseJSON(choices), that.assignedTags()));
+      }
+    });
+  },
+  allowSpaces: true,
+  placeholderText: 'Add Tags',
+  autocomplete: true,
+  caseSensitive: true,
+  removeConfirmation: true,
+  showAutocompleteOnFocus: true,
+  tagLimit: 30,
+});
+      }, 3000);
+    }
+  });
+  $(document).on("change", "#content > div.issue > div.attributes > div:nth-child(2)", function(event) {
+    setTimeout(function() {
+      $('#updateissue_tag_list').tagit({
+  tagSource: function(search, showChoices) {
+    var that = this;
+    $.ajax({
+      url: '#{escape_javascript auto_complete_issue_tags_path(@issue.project)}',
+      data: {q: search.term},
+      method: 'GET',  // Add the GET method here
+      dataType: 'json',  // Add datatype as JSON
+      success: function(choices) {
+      if (!choices || choices.length === 0) {
+            console.warn('No tags found for:', search.term);
+            return;
+        }
+        showChoices(that._subtractArray(jQuery.parseJSON(choices), that.assignedTags()));
+      }
+    });
+  },
+  allowSpaces: true,
+  placeholderText: 'Add Tags',
+  autocomplete: true,
+  caseSensitive: true,
+  removeConfirmation: true,
+  showAutocompleteOnFocus: true,
+  tagLimit: 30,
+});
+    }, 5000);
+  });
+<% end %>
+</div>
+<script>
+
+
+
+$(document).on('click', '.controller-issues.action-show a#tag_click', function() {
+      $('.box.tag_box').css("display",'inline-flex');
+  $('.for_tag').css("display",'none');
+  $('div.tags.attribute > div.value-tag > span#tag-form').css("display",'none');
+});
+$(document).on('click', '.controller-issues.action-show input#cancel_tag', function() {
+    $('.box.tag_box').css("display",'none');
+    $('.for_tag').css("display",'block');
+    $('div.tags.attribute > div.value-tag > span#tag-form').css("display",'inline-block');
+});
+
+
+// ------------save button ----------------
+$(document).on('click', '.controller-issues.action-show input#save_tag', function() {
+  var value = document.getElementById('updateissue_tag_list')
+  var all_tags = [] ;
+  var key = '<%= User.current.api_key%>'
+  var pathname = window.location.pathname;
+  var url      = window.location.href;   
+  var origin   = window.location.origin;
+  var issue_id = pathname.slice(8);
+  $('.box.tag_box').css("display",'none');
+  $('.for_tag').css("display",'block');
+  // $('div.tags.attribute > div.value-tag').css("display",'block');
+   all_tags = value.value ;
+   $.ajax({
+    type: "POST",
+    url: `${origin}/update_issue_tags.json?key=${key}`,
+    contentType: "application/json; charset=utf-8",
+    dataType: "json",
+    data: JSON.stringify({
+        id: issue_id,
+        tag_list: all_tags
+    }),
+    success: function(result, status, xhr) {
+       window.location = window.location.href.split("?")[0];
+       location.reload();
+    }
+});
+});
+
+</script>

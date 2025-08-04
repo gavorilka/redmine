@@ -1,0 +1,13 @@
+ <h4><%= link_to "#{@wiki.project.name} - ##{@wiki.id}", project_wiki_url(@wiki.project ) %></h4>
+ <br><br>
+  
+  <p>You have been mentioned in the wiki by <strong> <%= @current %> </strong>  on <strong> <%= Date.today.strftime('%d-%m-%Y') %> </strong>. </p>
+    
+
+<p> Wiki Content : </p>
+
+<%= sanitize(textilizable(@content.gsub('.', ' '), { headings: false, only_path: false }).gsub(Regexp.new(Regexp.escape(Setting.plugin_flux_mentions['symbol'])), '')) %>
+ <hr>
+
+ <p>Thank you for your attention to this matter.<br>
+ This is a system generated email. </p>

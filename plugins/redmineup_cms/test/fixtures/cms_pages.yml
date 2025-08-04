@@ -1,0 +1,59 @@
+page_001:
+  id: 1
+  name: page_001
+  slug: page_001
+  title: page 001
+  project_id:
+  visibility: logged
+  is_cached: false
+  content: Content for page 001
+  status_id: 1
+  layout_id: 2
+  version: 2
+page_002:
+  id: 2
+  name: page_002
+  slug: page_002
+  title: page 002
+  project_id:
+  visibility: public
+  is_cached: false
+  content: v3 for page2
+  status_id: 1
+  layout_id: 1
+  version: 3
+  parent_id: 1
+page_003:
+  id: 3
+  name: page_003
+  slug: page_003
+  title: page 003 (not visibile)
+  project_id:
+  visibility: nil
+  is_cached: true
+  content: Content for page 003
+  status_id: 0
+  layout_id: 1
+  parent_id: 2
+page_004:
+  id: 4
+  name: existed_page
+  slug: existed_page
+  title: page 004 (for single user)
+  project_id:
+  visibility: 3
+  is_cached: true
+  content: Content for page 004
+  layout_id: 2
+  status_id: 1
+page_005:
+  id: 5
+  name: filter test page
+  slug: filter_test_page
+  title: page 005 (Filter test page)
+  project_id:
+  visibility: public
+  is_cached: false
+  content: "<!-- urls -->\r\n{{ 'image.png' | attachment_url: 'absolute:true' }}<br>\r\n{{ 'image.png' | thumbnail_url: 'size:100', 'absolute:true' }}<br>\r\n{{ 'image.png' | timelink_url: 'expires:2200-01-12', 'absolute:true' }}<br>\r\n{{ 'filter_part' | part_url }}<br>\r\n{{ 'page_002' | page_url: 'absolute:true' }}<br>\r\n\r\n<!-- tags -->\r\n{{ 'page_002' | page_link: 'translated:true', 'class:link arrow' }}<br>\r\n{{ 'image.png' | thumbnail_tag: 'size:100', 'title:A title', 'width:100px', 'height:200px'  }}<br>\r\n{{ 'image.png' | image_tag: 'title:A title', 'width:100px', 'height:200px'  }}<br>\r\n{{ 'snippet_001' | stylesheet_page_tag: 'type:text/css' }}<br>\r\n{{ 'snippet_001' | javascript_page_tag: 'type:text/css' }}<br>\r\n{{ 'filter_part' | javascript_part_tag }}<br>"
+  layout_id: 3
+  status_id: 1

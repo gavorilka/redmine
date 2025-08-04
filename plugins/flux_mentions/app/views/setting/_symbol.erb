@@ -1,0 +1,5 @@
+<p>
+<label>Select Mention Symbol :- </label>
+  <%= select_tag('settings[symbol]',
+                 options_for_select(['@','$',':','~','!','%'],settings['symbol'])) %>
+</p>

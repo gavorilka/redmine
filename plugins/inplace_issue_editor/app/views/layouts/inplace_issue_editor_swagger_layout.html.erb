@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inplace Issue Editor API Documentation</title>
+
+  <%= stylesheet_link_tag('swagger-ui.css', :plugin=> :inplace_issue_editor) %> 
+
+</head>
+<body>
+  <div id="swagger-ui"></div>
+
+  <%= javascript_include_tag('swagger-ui-bundle.js', :plugin=> :inplace_issue_editor) %>  
+  <%= javascript_include_tag('swagger-ui-standalone-preset.js', :plugin=> :inplace_issue_editor) %>
+
+  <script>
+    window.onload = () => {
+      SwaggerUIBundle({
+        url: '/inplace-issue-editor-api.yaml',
+        dom_id: '#swagger-ui',
+        presets: [
+          SwaggerUIBundle.presets.apis,
+          SwaggerUIStandalonePreset
+        ],
+        layout: "StandaloneLayout"
+      });
+    };
+  </script>
+</body>
+</html>

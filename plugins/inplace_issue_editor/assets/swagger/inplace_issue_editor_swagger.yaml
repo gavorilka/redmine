@@ -1,0 +1,245 @@
+openapi: 3.0.0
+info:
+  title: Issue Tables API
+  description: API for managing issues, projects, and related data.
+  version: 1.0.0
+servers:
+  - url: "{server_url}"
+security:
+  - BasicAuth: []  # Apply BasicAuth globally
+
+paths:
+  /projects/{id}/active_memberss:
+    get:
+      summary: Fetch active members of a project
+      description: Fetches the active members (users) of the project with the given ID.
+      tags:
+        - Inplace Issue Editor API
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The ID of the project
+          schema:
+            type: integer
+            example: 1
+      responses:
+        '200':
+          description: Successful response containing active members
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  active_members:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 1
+                        name:
+                          type: string
+                          example: John Doe
+        '404':
+          description: Project not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Project not found
+
+  /issues/{id}/allowed_status:
+    get:
+      summary: Fetch allowed statuses for an issue
+      description: Fetches the allowed statuses for the issue with the given ID.
+      tags:
+        - Inplace Issue Editor API
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The ID of the issue
+          schema:
+            type: integer
+            example: 123
+      responses:
+        '200':
+          description: Successful response containing allowed statuses
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  allowed_status:
+                    type: array
+                    items:
+                      type: string
+                      example: "In Progress"
+        '404':
+          description: Issue not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Issue not found
+  /projects.json:
+    get:
+      summary: Fetch all projects
+      description: Fetches all the projects.
+      tags:
+        - Inplace Issue Editor API
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      responses:
+        '200':
+          description: Successful response containing all projects
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  projects:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 1
+                        name:
+                          type: string
+                          example: "Project Name"
+        '406':
+          description: Not Acceptable
+
+  /custom_fields.json:
+    get:
+      summary: Fetch all custom fields
+      description: Fetches all custom fields with their details.
+      tags:
+        - Inplace Issue Editor API
+      responses:
+        '200':
+          description: Successful response containing all custom fields
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                      example: 1
+                    name:
+                      type: string
+                      example: "Custom Field Name"
+                    customized_type:
+                      type: string
+                      example: "Issue"
+                    field_format:
+                      type: string
+                      example: "string"
+                    min_length:
+                      type: integer
+                      example: 0
+                    max_length:
+                      type: integer
+                      example: 255
+
+  /projects/{id}/versions.json:
+    get:
+      summary: Fetch all versions for a project
+      description: Fetches all versions (open) for a project.
+      tags:
+        - Inplace Issue Editor API
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The ID of the project
+          schema:
+            type: integer
+            example: 1
+        - name: indata
+          in: query
+          required: false
+          description: Whether to include version names only
+          schema:
+            type: string
+            example: yes
+      responses:
+        '200':
+          description: Successful response containing project versions
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  version:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 1
+                        name:
+                          type: string
+                          example: "v1.0"
+        '404':
+          description: Project not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Project not found
+
+  /{id}/check_agile_board_enabled:
+    get:
+      summary: Check if Agile Board is enabled for a project
+      description: Checks whether the Agile Board is enabled for the project associated with the given issue.
+      tags:
+        - Inplace Issue Editor API
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The ID of the issue
+          schema:
+            type: integer
+            example: 123
+      responses:
+        '200':
+          description: Successful response indicating whether the Agile Board is enabled
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  check_agile_board_enabled:
+                    type: boolean
+                    example: true
+        '404':
+          description: Issue not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Issue not found

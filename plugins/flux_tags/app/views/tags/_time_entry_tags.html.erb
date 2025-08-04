@@ -1,0 +1,196 @@
+<% all_tags = TimeEntry.available_tags.to_a %>
+
+<!-- 🔍 Search + Clear -->
+<div class="tagSearchContainer">
+  <input type="text" id="tag-search-time-entry" placeholder="Search tags (e.g. tag1, tag2)..." />
+  <button type="button" id="clear-search-time-entry"><%= l(:button_clear) rescue 'Clear' %></button>
+</div>
+
+<!-- 📋 Tag Table -->
+<% if all_tags.present? %>
+  <table class="list time_entries" id="tag-table-time-entry">
+    <thead>
+      <tr>
+        <th class="checkbox hide-when-print">
+          <%= link_to image_tag('toggle_check.png'), {},
+              id: 'toggle-checkbox-time-entry',
+              onclick: 'tagsCheckboxTimeEntry(event); return false;',
+              title: "#{ l :button_check_all }/#{ l :button_uncheck_all }" %>
+        </th>
+        <th><%= l(:field_name) %></th>
+        <th style="width:10%; text-align:center;"></th>
+      </tr>
+    </thead>
+    <tbody id="tag-table-body-time-entry">
+      <% all_tags.each do |tag| %>
+        <tr class="hascontextmenu tag-row-time-entry" data-tag-name="<%= tag.name.downcase %>">
+          <td class="checkbox hide-when-print">
+            <%= check_box_tag 'tag_ids[]', tag.id, false, id: "tag_te_#{tag.id}", class: 'checkbox_toggle_selection_time_entry' %>
+          </td>
+          <td><%= render_tag_link(tag) %></td>
+          <td class="buttons">
+            <%= link_to l(:button_edit), edit_tag_path(tag, tab: 'time_entry'), class: 'icon icon-edit icon-edit-time-entry' %>
+            <a href="#" onclick="showCustomConfirm(<%= tag.id %>, 'time_entry'); return false;" class="icon icon-del icon-del-time-entry"><%= l(:label_delete) %></a>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <p class="nodata nodataTimeEntryTag" style="display:none;"><%= l :label_no_data %></p>
+   
+  <!-- 🔢 Pagination Controls -->
+  <div class="pagination" id="pagination-controls-time-entry" style="margin-top:10px;"></div>
+<% else %>
+  <p class="nodata"><%= l :label_no_data %></p>
+<% end %>
+
+<!-- 🚀 JS: Filtering + Pagination for Time Entry -->
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const searchInput = document.getElementById("tag-search-time-entry");
+    const clearButton = document.getElementById("clear-search-time-entry");
+    const tableBody = document.getElementById("tag-table-body-time-entry");
+    const pagination = document.getElementById("pagination-controls-time-entry");
+    const nodataTimeEntryTag = document.querySelector(".nodataTimeEntryTag");
+
+     // Disable input and button if tag table not found
+    if (!document.getElementById("tag-table-time-entry")) {
+      searchInput.setAttribute("disabled", "disabled");
+      clearButton.setAttribute("disabled", "disabled");
+      return; 
+    }
+
+    const allRows = Array.from(tableBody.querySelectorAll(".tag-row-time-entry"));
+    let filteredRows = [...allRows];
+    let rowsPerPage = parseInt(new URLSearchParams(window.location.search).get("per_page")) || 10;
+    let currentPage = 1;
+
+    function renderPaginationControls(totalPages, totalItems, from, to) {
+      const ul = document.createElement("ul");
+      ul.className = "pages";
+
+      // Previous
+      const prevLi = document.createElement("li");
+      if (currentPage === 1) {
+        prevLi.className = "previous disabled";
+        prevLi.innerHTML = "<span>« Previous</span>";
+      } else {
+        prevLi.className = "previous page";
+        prevLi.innerHTML = `<a href="#">« Previous</a>`;
+        prevLi.onclick = () => {
+          currentPage--;
+          paginateRows();
+        };
+      }
+      ul.appendChild(prevLi);
+
+      // Pages
+      for (let i = 1; i <= totalPages; i++) {
+        const li = document.createElement("li");
+        if (i === currentPage) {
+          li.className = "current";
+          li.innerHTML = `<span>${i}</span>`;
+        } else {
+          li.className = "page";
+          li.innerHTML = `<a href="#">${i}</a>`;
+          li.onclick = () => {
+            currentPage = i;
+            paginateRows();
+          };
+        }
+        ul.appendChild(li);
+      }
+
+      // Next
+      const nextLi = document.createElement("li");
+      if (currentPage === totalPages) {
+        nextLi.className = "next disabled";
+        nextLi.innerHTML = "<span>Next »</span>";
+      } else {
+        nextLi.className = "next page";
+        nextLi.innerHTML = `<a href="#">Next »</a>`;
+        nextLi.onclick = () => {
+          currentPage++;
+          paginateRows();
+        };
+      }
+      ul.appendChild(nextLi);
+
+      // Compose full HTML
+      pagination.innerHTML = '';
+      const span = document.createElement("span");
+      span.appendChild(ul);
+
+      const itemSpan = document.createElement("span");
+      itemSpan.className = "items";
+      itemSpan.innerText = ` (${from}-${to}/${totalItems})`;
+
+      const perPageSpan = document.createElement("span");
+      perPageSpan.className = "per-page";
+      perPageSpan.innerHTML = "Per page: ";
+
+      [10, 20, 50].forEach(count => {
+        if (count === rowsPerPage) {
+          const sel = document.createElement("span");
+          sel.className = "selected";
+          sel.innerText = ", "+ count;
+          perPageSpan.appendChild(sel);
+        } else {
+          const link = document.createElement("a");
+          link.href = "#";
+          link.innerText = count;
+          link.onclick = (e) => {
+            e.preventDefault();
+            rowsPerPage = count;
+            currentPage = 1;
+            paginateRows();
+          };
+          perPageSpan.appendChild(document.createTextNode(", "));
+          perPageSpan.appendChild(link);
+        }
+      });
+
+      pagination.appendChild(span);
+      pagination.appendChild(itemSpan);
+      pagination.appendChild(perPageSpan);
+    }
+
+    function paginateRows() {
+      const total = filteredRows.length;
+      const totalPages = Math.ceil(total / rowsPerPage);
+      const startIndex = (currentPage - 1) * rowsPerPage;
+      const endIndex = startIndex + rowsPerPage;
+    
+      tableBody.innerHTML = ""; // Clear existing rows
+      if (total === 0) {
+        if (nodataTimeEntryTag) nodataTimeEntryTag.style.display = "flex"; 
+        pagination.innerHTML = ""; // Hide pagination
+        return;
+      } else {
+        if (nodataTimeEntryTag) nodataTimeEntryTag.style.display = "none";
+      }
+
+      filteredRows.slice(startIndex, endIndex).forEach(row => tableBody.appendChild(row));
+      renderPaginationControls(totalPages, total, startIndex + 1, Math.min(endIndex, total));
+    }
+    
+    function filterTags() {
+      const terms = searchInput.value.toLowerCase().split(',').map(t => t.trim()).filter(Boolean);
+      filteredRows = allRows.filter(row => {
+        const name = row.getAttribute("data-tag-name");
+        return terms.length === 0 || terms.some(term => name.includes(term));
+      });
+
+      currentPage = 1;
+      paginateRows();
+    }
+
+    searchInput.addEventListener("input", filterTags);
+    clearButton.addEventListener("click", function () {
+      searchInput.value = "";
+      filterTags();
+    });
+
+    filterTags();
+  });
+</script>

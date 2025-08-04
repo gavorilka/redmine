@@ -1,0 +1,14 @@
+<p style="padding-left:0px;margin-top:0px !important;" class="nodata no_data">No data to display</p>
+<% if Redmine::VERSION::MAJOR == 5 %>
+<style>
+    .controller-settings.action-plugin .plugin-inplace_issue_editor input[type="submit"]{
+        display: none;
+    }
+</style>
+<% elsif Redmine::VERSION::MAJOR == 4 %>
+<style>
+    .controller-settings.action-plugin #settings input[type="submit"]{
+        display: none;
+    }
+</style>
+<% end %>

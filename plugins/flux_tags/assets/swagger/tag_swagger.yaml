@@ -1,0 +1,112 @@
+openapi: 3.0.0
+info:
+  title: Tags API
+  description: API for managing individual tags with authentication.
+  version: 1.0.0
+
+servers:
+  - url: "{server_url}"
+    description: 
+
+paths:
+  /tags/{id}:    
+    get:
+      summary: Retrieve a single tag by ID
+      description: Requires admin authentication.
+      security:
+        - basicAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Tag details
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Tag"
+        "404":
+          description: Tag not found
+
+    put:
+      summary: Update a tag by ID
+      description: Modify the name of an existing tag.
+      security:
+        - basicAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                tag:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+      responses:
+        "200":
+          description: Tag updated successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                  tag:
+                    $ref: "#/components/schemas/Tag"
+        "404":
+          description: Tag not found
+        "422":
+          description: Validation errors
+
+    delete:
+      summary: Delete a tag by ID
+      description: Remove a tag from the system.
+      security:
+        - basicAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Tag deleted successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        "404":
+          description: Tag not found
+
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+
+  schemas:
+    Tag:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+   

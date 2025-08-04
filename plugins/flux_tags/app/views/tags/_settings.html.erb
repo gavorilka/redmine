@@ -1,0 +1,223 @@
+<%
+  tags_tabs = [
+    {
+      name:    'general',
+      partial: 'tags/general',
+      label:   :label_general
+    },
+    # {
+    #   name:    'manage_tags', 
+    #   partial: 'tags/manage_tags',
+    #   label:   :issue_tags_manage_tags
+    # },
+
+    {
+      name:    'issue',
+      partial: 'tags/issue_tags',
+      label:   :label_issue_tags
+    },
+    {
+      name:    'time_entry',
+      partial: 'tags/time_entry_tags',
+      label:   :label_time_entry_tags
+    },
+    {
+      name:    'project',
+      partial: 'tags/project_tags',
+      label:   :label_project_tags
+    }
+  ]
+  
+%>
+<% html_title l(:label_settings), l(:tags) %>
+<%= render_tabs tags_tabs %>
+
+<div  id="tag-overloay" class="tag-overloay"></div>
+<div class="delete-email-template" id="delete-email-template">
+   <div class="suite-header">
+      <div class="tag-suite-header-content">
+         <div class="delete-heading" style="display:flex;"><%= l(:label_for_delete_tah)%></div>
+         <div  class="tag-cross-folder" onclick="closeDeleteTagModal()" style="display:flex; cursor:pointer;"><img class="tag-image-folder" src="/plugin_assets/flux_tags/images/cross.svg"></div>
+       </div>
+     </div>
+   <div class="tag-main-content">
+     <p class="tag-para-content"><%= l(:label_for_delete_message)%></p>
+   </div>
+   <div class="tag-footer-folder">
+      <div style="display:flex; justify-content:end;">
+       <div style="display:flex;gap:5px;">
+             <button type="button" class="tag_cancel-btn" onclick="closeDeleteTagModal()"><%= l(:setting_issue_tags) %></button>
+             <button type="button" class="tag_button" id="confirm-delete" ><%= l(:label_delete)%></button>
+      </div>
+   </div>
+</div>
+</div>
+
+
+<style>
+  .delete-heading{
+  font-size: 18px;
+  color:black;
+  font-weight: 600;
+}
+  .modal-transition{
+opacity: 1 !important;
+visibility: visible !important;
+display: block !important;
+transition: all 0.3s ease-in; 
+}
+.tag-para-content{
+  font-size: 17px;
+  font-family: "Poppins" !important;
+  padding-left: 0px !important;
+  text-align: justify;
+  line-height: 1.5;
+  /* margin: 0 auto; */
+  max-width: 600px;
+  padding-top: 0px !important;
+  padding-bottom: 0px !important;
+}
+.tag-main-content{
+  padding: 10px 0px;
+}
+.tag-image-folder{
+  width: 15px;
+  height: 25px;
+}
+.tag-cross-folder:hover{
+  background-color: #eee;
+  border-radius: 2px;
+}
+.tag-suite-header-content{
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #e0e1e2;
+}
+.delete-email-template{
+  font-size: 18px;
+  font-family: "Poppins";
+  color:black;
+  font-weight: 600;
+}
+button.tag_button{
+  background: #0094FF;
+  border: 1px solid #0094FF;
+  color: #fff;
+  padding: 0 7px;
+  width: 110px;
+  height: 40px;
+  border-radius: 4px;
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400 !important;
+  font-size: 15px !important;
+  line-height: 21px;
+  cursor: pointer;
+}
+input.tag_button {
+  background: #0094FF;
+  border: 1px solid #0094FF;
+  color: #fff;
+  padding: 0 7px;
+  width: 110px !important;
+  height: 40px;
+  border-radius: 4px;
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400 !important;
+  font-size: 15px !important;
+  line-height: 21px;
+  cursor: pointer;
+}
+button.tag_button:hover {
+  background-color: #0094ffc7 !important;
+  border: 1px solid #0094ffc7 !important;
+}
+
+input.tag_button:hover {
+  background-color: #0094ffc7 !important;
+  border: 1px solid #0094ffc7 !important;
+}
+button.tag_cancel-btn {
+  width: 120px;
+  height: 40px;
+  border-radius: 4px;
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 21px;
+  cursor: pointer;
+  transition: all 0.3s ease-in;
+}
+
+button.tag_cancel-btn:hover {
+  background-color: #ced3e6a8;
+}
+.overlay-delete-email-template{
+  opacity: 1 !important;
+  visibility: visible !important;
+  display: block !important;
+}
+.tag-footer-folder {
+  margin-top: 5px;
+}
+.tag-overloay{
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1040;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.1s ease-in;
+  display: none;
+}
+.delete-email-template{
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.8);
+  background-color: #fff;
+  border-radius: 5px;
+  z-index: 1060;
+  min-width: 386px;
+  padding: 20px;
+  visibility: hidden;
+  opacity: 0.4;
+  transition: all 0.1s ease-in;
+  display: none;
+  width: 430px; 
+  font-weight: 100 !important;
+}
+</style>
+
+<script>
+  function showCustomConfirm(tag_id, tab){
+    let deleteRun=document.getElementById("delete-email-template");
+    let overlay=document.getElementById("tag-overloay");
+    deleteRun.style.display="block";
+    $('html').css('overflow-y','hidden');
+    setTimeout(()=>{ 
+        deleteRun.classList.add("modal-transition");
+        overlay.classList.add("overlay-delete-email-template");
+    },5)
+    document.getElementById('confirm-delete').onclick = function() {
+        delete_tag(tag_id, tab);
+    };
+}
+
+function closeDeleteTagModal(){
+    $('html').css('overflow-y','auto');
+  let closeRun=document.getElementById("delete-email-template");
+  let overlay=document.getElementById("tag-overloay");
+  $("body :tabbable").removeAttr("tabindex");
+  closeRun.style.display="none";
+  closeRun.classList.remove("modal-transition");
+  overlay.classList.remove("overlay-delete-email-template");
+}
+</script>

@@ -1,0 +1,58 @@
+ <% if User.current.admin? || User.current.allowed_to?(:manage_issues_tags, nil, global: true) %>
+<p><%= form.text_field :tag_list, :size => 20, :value => issue.tag_list.to_s %></p>
+
+<%= javascript_tag do %>
+  $('#issue_tag_list').tagit({
+    tagSource: function(search, showChoices) {
+      var that = this;
+      $.ajax({
+        url: '<%= j(escape_javascript(auto_complete_issue_tags_path(@issue.project))) %>',
+        type: "GET",
+        data: {q: search.term},
+        dataType: 'json',
+        success: function(choices) {
+         if (!choices || choices.length === 0) {
+            console.warn("No tags found for:", search.term);
+            return;
+          }
+          showChoices(that._subtractArray(choices, that.assignedTags()));
+        }
+      });
+    },
+    allowSpaces: true,
+    placeholderText: '<%= j(I18n.t("add_tags_placeholder")) %>',
+    caseSensitive: true,
+    autocomplete: true,
+    removeConfirmation: true,
+    showAutocompleteOnFocus: true,
+    tagLimit: 30,
+  });
+<% end %>
+
+<style>
+  html[lang="ar"] li.tagit-new {
+    float: none !important;
+  }
+
+  html[lang="ar"] li.tagit-new .ui-widget-content.ui-autocomplete-input {
+    text-align: start !important;
+    padding-right: 10px !important;
+  }
+
+  html[lang="ar"] .tagit-choice.ui-widget-content.ui-state-default.ui-corner-all.tagit-choice-editable {
+    float: right !important;
+  }
+
+  html[lang="ar"] input#issue_tag_list {
+    direction: rtl;
+  }
+  ul.tagit li.tagit-choice .tagit-close {
+    cursor: pointer;
+    position: absolute;
+    right: .4em;
+    top: 50%;
+    margin-top: -8.5px !important;
+    line-height: 17px;
+  }
+</style>
+<% end %>

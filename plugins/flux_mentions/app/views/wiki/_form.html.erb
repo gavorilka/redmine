@@ -1,0 +1,52 @@
+
+
+<% if @project %>
+  <% users = @project.users.active.reject { |u| u.mail.blank? } %>
+<% else %>
+  <% users = User.active.reject { |u| u.mail.blank? } %>
+<% end %>
+
+<% users_data = users.map { |user| { id: user.id, login: user.login } }.to_json %>
+<% symbol = Setting.plugin_flux_mentions['symbol'] %>
+
+<script>
+$(document).ready(function() {
+  var usersData = <%= users_data.html_safe %>;
+  var symbol = '<%= symbol %>';
+  
+  let tributed = new Tribute({
+    collection: [
+      {
+        trigger: symbol,
+        values: usersData,
+        lookup: 'login',
+        fillAttr: 'login',
+        requireLeadingSpace: true,
+        selectTemplate: function (item) {
+          return symbol + item.original.login;
+        }
+      }
+    ]
+  });
+
+  var $wikiTextarea = $('textarea#content_text');
+ 
+
+  $wikiTextarea.on('keydown', function(event) {
+    if (event.key === symbol && !event.repeat ) {
+    }
+  });
+
+
+  tributed.attach($wikiTextarea);
+
+});
+
+
+
+function sanitizeHTML(html) {
+ 
+  return html;
+}
+</script>
+

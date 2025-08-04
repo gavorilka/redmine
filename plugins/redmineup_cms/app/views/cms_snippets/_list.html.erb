@@ -1,0 +1,29 @@
+<% if @snippets.any? %>
+<table class="list">
+  <thead>
+    <tr>
+      <%= sort_header_tag('name', :caption => l(:field_login)) %>
+      <th><%= l(:label_cms_description) %></th>
+      <%= sort_header_tag('filter_id', :caption => l(:label_cms_filter)) %>
+      <%= sort_header_tag('created_at', :caption => l(:field_created_on)) %>
+      <%= sort_header_tag('updated_at', :caption => l(:field_updated_on)) %>
+      <th style="width:10%;"> </th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @snippets.each do |snippet| -%>
+      <tr class="snippet <%= cycle("odd", "even") %>" id="snippet_<%= snippet.id %>">
+        <td class="name"><%= link_to h(snippet.name), edit_cms_snippet_path(snippet) %></td>
+        <td class="description"><%= snippet.description %></td>
+        <td class="filter_id"><%= snippet.filter && snippet.filter.class.content_type %></td>
+        <td class="created_at"><%= format_date(snippet.created_at) %></td>
+        <td class="updated_at"><%= format_time(snippet.updated_at) %></td>
+        <td class="buttons">
+          <%= link_to l(:label_history), cms_object_history_path(snippet, :object_type => snippet.class.name.underscore), :class => 'icon icon-history' if snippet.version > 1 %>
+          <%= delete_link cms_snippet_path(snippet) if User.current.admin? %>
+        </td>
+      </tr>
+    <% end -%>
+  </tbody>
+</table>
+<% end %>

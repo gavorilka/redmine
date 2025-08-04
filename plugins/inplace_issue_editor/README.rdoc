@@ -1,0 +1,3 @@
+= inplace_issue_editor
+
+Description goes here

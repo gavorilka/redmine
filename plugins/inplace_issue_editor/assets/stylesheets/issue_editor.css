@@ -1,0 +1,190 @@
+
+/* Issue Editor CSS */
+
+body.controller-issues.action-show div.issue.details .value, body.controller-issues.action-show div.issue.details .attributes .attribute .value {
+	overflow: visible;
+	position: relative;
+	align-items: center;
+}
+body.controller-issues.action-show div.issue.details .progress.attribute .value .iconEdit{
+	position: absolute;
+	top: 0px;
+	left: 102px;
+}
+body.controller-issues.action-show .issue.details div.description,
+body.controller-issues.action-show .issue.details div.subject {
+	position: relative;
+}
+
+body.controller-issues.action-show .issue.details.no-cursor .value {
+	cursor: initial;
+}
+
+body.controller-issues.action-show .attribute .error {
+	color: #e74c3c;
+	margin-left: 3px;
+}
+
+body.controller-issues.action-show div.issue.details div.subject {
+	display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+body.controller-issues.action-show div.issue.details div.subject .refreshData {
+	cursor: pointer;
+}
+
+body.controller-issues.action-show div.issue.details .splitcontent {
+	overflow: initial;
+}
+
+body.controller-issues.action-show div.issue.details .iconEdit {
+	opacity: 0;
+	display: inline-block;
+	transition: opacity .3s ease-in;
+	font-weight: 700;
+	margin-left: 1ch;
+}
+
+body.controller-issues.action-show div.issue.details.showPencil .iconEdit,
+body.controller-issues.action-show div.issue.details .attribute:hover .iconEdit,
+body.controller-issues.action-show div.issue.details .description:hover .iconEdit,
+body.controller-issues.action-show div.issue.details div.subject:hover .iconEdit {
+	cursor: pointer;
+	opacity: 1;
+}
+
+body.controller-issues.action-show .issueEdit {
+	
+	transform: translate(0%, -82%);
+
+	position:absolute;
+	opacity: 0;
+	transition: opacity .3s ease-in;
+	/* bottom: 100%; */
+	margin-bottom: 5px;
+	box-sizing: border-box;
+	padding: 5px;
+	border-radius: 3px;
+	background: white;
+	pointer-events: none;
+	box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+	width: auto;
+	white-space: nowrap; 
+}
+
+body.controller-issues.action-show .subject .issueEdit {
+	bottom: initial;
+	top:100%;
+}
+
+body.controller-issues.action-show .issueEdit.open {
+	opacity: 1;
+	z-index: 999;
+	pointer-events: auto;
+
+}
+
+body.controller-issues.action-show #TitleInput.issueEdit {
+	font-size: 0.57em;
+}
+
+body.controller-issues.action-show .issueEdit button.action {
+	margin-left: .5em;
+	cursor: pointer;
+	border: 0;
+	background-color: #efefef;
+	line-height: 0;
+}
+
+body.controller-issues.action-show .issueEdit button.action.valid {
+	font-weight: 700;
+	background-color: #27ae60;
+	color: white;
+}
+
+
+body.controller-issues.action-show .issueEdit select {
+    background-color:transparent;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    font-size: inherit;
+    font-family: inherit;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+	width: auto;
+}
+
+body.controller-issues.action-show .issueEdit select[multiple="multiple"] {
+	display: block;
+	width:  100%;
+}
+
+body.controller-issues.action-show .issueEdit select option[disabled="disabled"] {
+    display:none;
+}
+
+body.controller-issues.action-show div.issue div.subject h3 {
+	position:relative;
+	display: inline-block;
+	cursor: pointer;
+}
+
+body.controller-issues.action-show .issueEdit input[type="text"] {
+	width: auto !important;
+}
+
+body.controller-issues.action-show .issueEdit textarea {
+	width: 100%;
+	display: block;
+	resize: none;
+	margin-bottom: 10px;
+}
+
+body.controller-issues.action-show .issueEdit input,
+body.controller-issues.action-show .issueEdit select {
+	vertical-align: middle;
+}
+
+body.controller-issues.action-show .issueEdit .check_box_group {
+	border: 0px !important;
+	margin-bottom: 10px;
+	width:100%;
+}
+.controller-issues.action-show .value.startdate, .controller-issues.action-show .value.duedate{
+	background: none;
+}
+
+/* MOBILE MEDIAQUERY */
+
+@media screen and (max-width: 899px){
+
+	body.controller-issues.action-show div.issue.details div.subject {
+		display: block;
+	}
+
+	body.controller-issues.action-show div.issue.details div.subject .refreshData {
+		display: none;
+	}
+
+	body.controller-issues.action-show div.issue.details .value, body.controller-issues.action-show div.issue.details .attributes .attribute .value {
+		display: block;
+	}
+
+	body.controller-issues.action-show .issueEdit {
+		display: block;
+		position: relative;
+		margin: 10px 0;
+		white-space: normal;
+		height: 0;
+		overflow: hidden;
+		padding: 0;
+	}
+
+	body.controller-issues.action-show .issueEdit.open {
+		height: auto;
+		padding: 10px;
+	}
+}

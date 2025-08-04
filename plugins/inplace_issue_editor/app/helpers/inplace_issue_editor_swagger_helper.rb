@@ -1,0 +1,2 @@
+module InplaceIssueEditorSwaggerHelper
+end

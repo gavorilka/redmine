@@ -1,0 +1,25 @@
+<% if container.attachments.any? %>
+  <fieldset><legend><%= l(:label_attachment_plural) %></legend>
+    <%= link_to_cms_attachments container, :thumbnails => true  %>
+
+    <% if container.attachments.any? && container.safe_attribute?('deleted_attachment_ids') %>
+        <%= link_to l(:label_cms_delete_attachments),
+            '#', :onclick => "$('#existing-attachments').toggle(); return false;", :class => 'icon icon-del' %>        
+    <div id="existing-attachments" style="<%= container.deleted_attachment_ids.blank? ? 'display:none;' : '' %>">
+      <% container.attachments.each do |attachment| %>
+      <span class="existing-attachment">
+        <%= text_field_tag '', attachment.filename, :class => "icon icon-attachment filename", :disabled => true %>
+        <label>
+          <%= check_box_tag "#{container.class.name.underscore}[deleted_attachment_ids][]",
+                            attachment.id,
+                            container.deleted_attachment_ids.include?(attachment.id),
+                            :id => nil, :class => "deleted_attachment" %> <%= l(:button_delete) %>
+        </label>
+      </span>
+      <% end %>
+      <hr />
+    </div>
+    <% end %>       
+  </fieldset>
+  <br/>
+<% end %>

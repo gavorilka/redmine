@@ -1,0 +1,37 @@
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+ <% if User.current.admin? || User.current.allowed_to?(:manage_issues_tags, @project) %>
+<p>
+  <label><%= l :field_tags %> </label>
+  <%= select_tag 'common_tags', options_for_select(Issue.available_tags.presence || []), multiple: true, class: 'select2' %>
+</p>
+
+<script>
+  $(document).ready(function() {
+    var placeholderText = "<%= j(I18n.t('select_tags_label')) %>";
+    $('.select2').select2({
+      placeholder: placeholderText,
+      closeOnSelect: false,
+      tags: true,
+      allowHtml: true
+    });
+     $('.select2').on('select2:select', function(e) {
+      var searchField = $(this).next('.select2-container').find('.select2-search__field');
+      searchField.val('');
+    });
+  });
+</script>
+<style>
+  html[lang="ar"] .select2-search__field {
+  text-align: end !important;
+}
+html[lang="ar"] li.tagit-new .ui-widget-content.ui-autocomplete-input{
+  text-align: start !important;
+  padding-right: 10px !important;
+  padding-top: 8px !important;
+}
+html[lang="ar"] .select2-selection__choice{
+  float: right !important;
+}
+</style>
+<% end %>

@@ -1,0 +1,35 @@
+ 
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tag Plugin API Doc</title>
+ 
+  <%= stylesheet_link_tag('swagger-ui.css', :plugin=> :flux_tags) %>
+ 
+</head>
+<body>
+  <div id="swagger-ui"></div>
+ 
+  <%= javascript_include_tag('swagger-ui-bundle.js', :plugin=> :flux_tags) %>
+  <%= javascript_include_tag('swagger-ui-standalone-preset.js', :plugin=> :flux_tags) %>
+ 
+  <script>
+    window.onload = () => {
+      SwaggerUIBundle({
+        url: '/tag-api.yaml',
+        dom_id: '#swagger-ui',
+        presets: [
+          SwaggerUIBundle.presets.apis,
+          SwaggerUIStandalonePreset
+        ],
+        layout: "StandaloneLayout"
+      });
+    };
+  </script>
+</body>
+</html>
+ 
+ 

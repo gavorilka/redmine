@@ -1,0 +1,163 @@
+# English strings go here for Rails i18n
+de:
+  label_cms: CMS
+
+  label_project_tab: "Registerkarte Projekt"
+  label_project_tab_caption: "Projektregisterkarte %{index}"
+  label_project_tab_page: "Seite"
+
+  label_cms_menu: Menü
+  label_cms_menu_new: Neues Menü
+  label_cms_menu_plural: Menüs
+  label_cms_menu_name: Name
+  label_cms_menu_caption: Bildunterschrift
+  label_cms_menu_type: Typ
+  label_cms_menu_path: Pfad
+  label_cms_menu_status: Status
+  label_cms_menu_parent: Elternmenü
+  label_cms_position: Position
+  label_cms_account_settings: Account Einstellungen
+
+  label_cms_page_plural: Seiten
+  label_cms_page: Seite
+  label_cms_page_new: Neue Seite
+  label_cms_page_summary: Zusammenfassung
+  label_cms_status: Status
+  label_cms_content: Inhalt
+  label_cms_filter: Filter
+  label_cms_page_parent: Elternseite
+  label_cms_use_localization: Lokalisierung
+  label_cms_home_page: Hauptseite
+  label_cms_landing_page: Zielseite
+  label_cms_landing_tab: Ziel Tab
+  label_cms_projects_page: Projektübersichtsseite
+  label_cms_my_page: Meine Seite
+  label_cms_is_cached: Liegt im Cache
+
+  label_cms_part_plural: Teile
+  label_cms_part: Teil
+  label_cms_part_new: Neuer Teil
+  label_cms_part_type: Typ
+  label_cms_is_global: Ist global
+  label_cms_refresh_cache: Cache aktualisieren
+  label_cms_redmine_layout: Redmine Layout
+  label_cms_seo: SEO
+  label_cms_keywords: Schlüsselwörter
+  label_cms_description: Beschreibung
+
+  label_cms_layout_content: Layout-Inhalt
+  label_cms_apply: Anwenden
+  label_cms_visibility: Sichtbarkeit
+  label_cms_show_activity_tab: Registerkarte Aktivität anzeigen
+  label_cms_show_overview_tab: Registerkarte Übersicht anzeigen
+
+  label_cms_redmine_top_menu: Standard-Hauptmenüelemente
+  label_cms_copyright: Copyright Info
+
+  project_module_cms: CMS
+  label_cms_custom_layout: Benutzerdefiniertes Layout
+
+  label_cms_cache_expires_in: Cache läuft ab in
+  label_cms_minute_plural: Minuten
+  label_cms_edit_permissions: Berechtigungen bearbeiten
+  label_cms_source_path: Quellpfad
+  label_cms_destination_path: Zielpfad
+  label_cms_redirect_plural: Weiterleitungen
+  label_cms_redirect: Weiterleitung
+  label_cms_redirect_new: Neu Weiterleitung
+  label_cms_variable_plural: Globale Variablen
+  label_cms_variable: Globale Variable
+  label_cms_variable_new: Neue globale Variablen
+  label_cms_variable_name: Name
+  label_cms_variable_value: Wert
+  label_cms_version_cannot_destroy_current: Aktuelle Version kann nicht gelöscht werden
+  label_cms_version_comment: Ändert Kommentar
+  field_layout: Layout
+  label_cms_layout_plural: Layouts
+  label_cms_layout: Layout
+  label_cms_slug: Slug
+  label_cms_name: Name
+  label_cms_title: Titel
+  label_cms_layout_new: Neues Layout
+  label_cms_content_type: Inhaltstyp
+  label_cms_no_layout: Layout nicht gefunden
+  label_cms_settings: CMS - Allgemeine Einstellungen
+  label_cms_field_plural: Felder
+  label_cms_field_value: Feldwert
+  label_cms_field: Seitenfeld
+  label_cms_add_field: Feld hinzufügen
+  label_cms_default_fields: Standardseitenfelder
+  label_cms_snippet_new: Neuer Schnipsel
+  label_cms_snippet_edit: Schnipsel bearbeiten
+  label_cms_snippet_plural: Schnipsel
+  label_cms_snippet: Schnipsel
+  label_cms_redmine_layout_plural: Redmine Aktionslayouts
+  label_cms_redmine_action: Redmine Aktion
+  label_cms_redmine_layout_new: Neues Redmine Aktionslayout
+  label_cms_redmine_layout_edit: Redmine Aktionslayouts bearbeiten
+  label_cms_status_locked: Gesperrt
+  label_cms_status_active: Aktiv
+  label_cms_asset_plural: Anlagen
+  label_cms_thumbnail: Miniaturansicht
+  label_cms_edit_assets: Anlagen bearbeiten
+  label_cms_default_layout: Standardlayout
+  label_cms_redmine_hook_plural: Redmineverankerungen
+  label_cms_layout_edit: Layout bearbeiten
+  label_cms_part_edit: Teil bearbeiten
+  label_cms_page_edit: Seite bearbeiten
+  label_cms_redirect_edit: Weiterleitung bearbeiten
+  label_cms_part_edit_plural: Teile bearbeiten
+  label_cms_preview: Vorschau
+  label_cms_sub_pages: Unterseite
+  label_cms_preview_page: Vorschauseite
+  label_cms_show_site: Zeige Seite
+  label_cms_jump_to_a_page: "Springe zur Seite ..."
+  label_cms_section: Sektion
+  label_cms_page_tags: Seiten Tags
+  label_cms_tags: Tags
+  label_cms_diff_with_current: Unterschiede zur aktuellen Version
+
+  label_cms_exports_new: CSM-Objekt exportieren
+  label_cms_exported_object: Exportiertes CMS-Objekt
+  label_cms_exports_attachment_content: Inhalt der Anhänge exportieren
+  button_import: Import
+  label_cms_imports_new: CMS-Objekt importieren
+  label_crm_import_file: Importierte Datei
+  label_cms_import_rewrite_existed: Existierende überschreiben
+  label_crm_import_page_exist: Die importierte Seite existiert bereits
+  label_crm_import_layout_exist: Importiertes Layout ist bereits vorhanden
+  label_crm_import_snippet_exist: Importierter Schnipsel ist bereits vorhanden
+  label_crm_import_result: Ergebnis des Importes
+  label_crm_import_success: Objekt erfolgreich importiert
+  label_crm_import_failed: Import fehlgeschlagen
+  error_cms_parent_not_found: "Übergeordnete Seite mit dem Namen %{parent_page} nicht gefunden"
+  error_cms_layour_not_found: „Layout mit Name %{layout_name} nicht gefunden“
+  label_cms_error_page: Fehlerseite
+
+  label_cms_export_website: Webseite exportieren
+  label_cms_import_website: Webseite importieren
+  label_cms_website_exports_new: CMS-Website exportieren
+  label_cms_website_imports_new: CMS-Website importieren
+  label_crm_import_asset_exist: Importiertee Anlage ist bereits vorhanden
+  label_cms_page_date: Datum
+  label_cms_used_in_pages: Wird in Seiten verwendet
+
+  label_cms_version: Version
+  label_cms_author: Autor(in)
+  label_cms_page_search: Suche nach Name/Slug
+  label_cms_page_field_name: Seitenfeldname
+  label_cms_page_part_name: Name des Seitenteils
+  label_cms_page_part_description: Beschreibung des Seitenteils
+  label_cms_page_part_content: Inhalt des Seitenteils
+  label_cms_page_saved_queries: Gespeicherte Abfragen
+  label_cms_page_tags: Tags
+  label_cms_created_at: Erstellt
+  label_cms_updated_at: Aktualisiert
+
+  label_cms_menu_edit: Menüpunkt bearbeiten
+  label_cms_update_conflict: "Die Seite wurde von einem anderen Benutzer aktualisiert, während Sie sie bearbeitet haben."
+  label_cms_conflict_resolution_overwrite: Wenden Sie meine Änderungen trotzdem an. Einige Änderungen können überschrieben werden
+  label_cms_conflict_resolution_cancel:  Alle meine Änderungen verwerfen und die Seite erneut anzeigen
+  label_cms_save_page_error: "Beim Speichern der Seite ist ein Fehler aufgetreten."
+  label_cms_delete_attachments: Angehängte Dateien löschen
+  label_cms_content_version_plural: CMS-Bearbeitungen

@@ -1,0 +1,12 @@
+<% if defined(show_always) && show_always|| entry.tag_list.present? %>
+    <div class= "tags_attribute">
+        <% unless defined? hide_label %>
+            <span class="label" >
+            <%= l :field_tag_list %> :
+            </span> 
+        <% end ; if defined?(editable) && editable %>
+
+        <div id="issue-tags-zt">
+          <%#= tag_links entry.tags, project: @project, unsorted: defined?(unsorted) ? unsorted :false, %>
+        </div>
+    </div>

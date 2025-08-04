@@ -1,0 +1,39 @@
+<%#tags = [Issue.available_tags, TimeEntry.available_tags, Project.available_tags] %>
+ <%=  javascript_include_tag('tags.js', :plugin => :flux_tags) %>
+<%if tags.any? { |tag_list| tag_list.present? } %>
+  <table class="list issues">
+    <thead>
+      <tr>
+        <th class="checkbox hide-when-print">
+          <%= image_tag('toggle_check.png', onclick: 'tagsCheckbox();', title: "#{ l :button_check_all }/#{ l :button_uncheck_all }") %>
+        </th>
+        <th><%= l(:field_name) %></th>
+        <th align="center" style="width:10%;"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% tags.each_with_index do |tag_list, index| %>
+        <% if tag_list.present? %>
+          <% tag_list.each do |tag| %>
+            <tr class="hascontextmenu <%= cycle('odd', 'even') %>">
+              <td class="checkbox hide-when-print">
+                <%= check_box_tag 'tag_ids[]', tag.id, false, id: "tag_#{tag.id}", class: 'checkbox_toggle_selection ', id: 'toggle-checkbox' %>
+              </td>
+              <td><%= render_tag_link(tag) %></td>
+              <td class="buttons">
+                <%= link_to l(:button_edit), edit_tag_path(tag),
+                      class: 'icon icon-edit' %>
+                <%#= link_to l(:button_delete), tags_path(id: tag), method: :delete,data: { confirm: "Are you sure you want to delete the selected tags?"}, class: 'icon icon-del', onclick: "window.location.reload();" %>
+               <a href="#" onclick="delete_tag(<%= tag.id %>); return false;" class="icon icon-del">Delete</a>
+              </td>
+            </tr>
+          <% end %>
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+  <br>
+<% else %>
+  <p class="nodata"><%= l :label_no_data %></p>
+<% end %>
+
