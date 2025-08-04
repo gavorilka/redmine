@@ -84,3 +84,8 @@
 #mega_calendar__calendar th[role=columnheader]:hover:after {
     display: none !important;
 }
+
+#mega_calendar__calendar input, #mega_calendar__calendar select, #mega_calendar__calendar button {
+    height: auto;
+    min-height: 24px;
+}
